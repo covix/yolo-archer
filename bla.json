@@ -1,0 +1,40 @@
+{
+    "3435": {
+        "name": "COLO-1014-SJ1",
+        "nickname": "US-SJC-004",
+        "type": "Colocated Server",
+        "location": "San Jose:55 S Market",
+        "assets": {
+            "CPU": [
+                {
+                    "model": "Intel E3 1270"
+                }
+            ],
+            "Hard Drives": [
+                {
+                    "model": "Western Digital 500GB RE4 ABYX SATA"
+                },
+                {
+                    "model": "Western Digital 500GB RE4 ABYX SATA"
+                },
+                {
+                    "model": "Kingston 240GB SSD"
+                }
+            ],
+            "RAM": [
+                {
+                    "model": "Super Talent 4GB DDR3 1333 ECC"
+                },
+                {
+                    "model": "Super Talent 4GB DDR3 1333 ECC"
+                },
+                {
+                    "model": "Super Talent 4GB DDR3 1333 ECC"
+                },
+                {
+                    "model": "Super Talent 4GB DDR3 1333 ECC"
+                }
+            ]
+        }
+    }
+}
