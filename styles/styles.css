@@ -96,3 +96,19 @@ body {
         border-bottom: 0;
     }
 }
+/* Thumbnail */
+
+.thumbnail {
+    background-color: initial;
+    border: initial;
+}
+/* Modal */
+
+.modal-body {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.modal-footer {
+    padding-left: 40px;
+    padding-right: 40px;
+}
