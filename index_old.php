@@ -4,7 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>AulApp</title>
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <!--    <link rel="stylesheet" href="style.css" type="text/css">-->
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -12,7 +21,6 @@
         <header>
             <h1>A<span>ul</span>A<span>pp</span></h1>
         </header>
-
         <div id="divimg">
             <img src="images/logo.png" />
         </div>
