@@ -57,6 +57,7 @@
                                 <label for="n-aula">A201</label>
                                 <img src="img/wifi.png" />
                                 <img src="img/power.png" />
+                                <label for="data-prenotazione">12:30 - 13:00 Giovedì 10</label>
                             </div>
 
                         </li>
@@ -68,7 +69,8 @@
                                 <img src="img/dislike.png" />
                                 <label for="people">15/120</label>
                                 <img src="img/user-icon.png" />
-                                <form id="html5Form" class="form-horizontal" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+
+                                <form id="numericinput" class="form-horizontal" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
 
                                     <div class="form-group">
                                         <div class="col-md-3 inputContainer">
@@ -76,14 +78,14 @@
                                         </div>
                                     </div>
                                 </form>
+
+                                <button class="btn btn-primary" type="button">Prenota</button>
                             </div>
                         </li>
                     </ul>
                 </div>
 
 
-                <label for="data-prenotazione">12:30 - 13:00 Giovedì 10</label>
-                <button class="btn btn-primary" type="button">Prenota</button>
                 <hr/>
 
             </div>
@@ -133,8 +135,7 @@
                 //                };
 
                 //                $('#datetimepicker1').datetimepicker();
-                console.log($('#html5Form'));
-                $('#html5Form').bootstrapValidator();
+                $('#numericinput').bootstrapValidator();
 
             });
         </script>
