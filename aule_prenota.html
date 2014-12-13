@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/bootstrapValidator.min.css">
+    <link rel="stylesheet" href="./css/bootstrap-datetimepicker.min.css">
 </head>
 
 <body>
@@ -89,7 +90,6 @@
             </div>
 
         </div>
-
         <footer class="footer">
             <p>Brunella © Company 2014</p>
         </footer>
@@ -101,43 +101,18 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="js/bootstrapValidator.min.js"></script>
-
         <script src="js/moment.js"></script>
+        <script src="js/bootstrap-datetimepicker.min.js"></script>
         <script type="text/javascript">
             $(function () {
-
-                //                $.fn.datetimepicker.defaults = {
-                //                    pickDate: true, //en/disables the date picker
-                //                    pickTime: true, //en/disables the time picker
-                //                    useMinutes: true, //en/disables the minutes picker
-                //                    useSeconds: true, //en/disables the seconds picker
-                //                    useCurrent: true, //when true, picker will set the value to the current date/time
-                //                    minuteStepping: 1, //set the minute stepping
-                //                    minDate: '1/1/1900', //set a minimum date
-                //                    maxDate: '31/12/2099', //set a maximum date (defaults to today +100 years)
-                //                    showToday: true, //shows the today indicator
-                //                    language: 'en', //sets language locale
-                //                    defaultDate: "", //sets a default date, accepts js dates, strings and moment objects
-                //                    disabledDates: [], //an array of dates that cannot be selected
-                //                    enabledDates: [], //an array of dates that can be selected
-                //                    icons: {
-                //                        time: 'glyphicon glyphicon-time',
-                //                        date: 'glyphicon glyphicon-calendar',
-                //                        up: 'glyphicon glyphicon-chevron-up',
-                //                        down: 'glyphicon glyphicon-chevron-down'
-                //                    },
-                //
-                //                    useStrict: false, //use "strict" when validating dates
-                //                    sideBySide: false, //show the date and time picker side by side
-                //                    daysOfWeekDisabled: [] //for example use daysOfWeekDisabled: [0,6] to disable weekends
-                //                };
-
-                //                $('#datetimepicker1').datetimepicker();
+                //                $.fn.datetimepicker.defaults = { // pickDate: true, //en/disables the date picker // pickTime: true, //en/disables the time picker // useMinutes: true, //en/disables the minutes picker // useSeconds: true, //en/disables the seconds picker // useCurrent: true, //when true, picker will set the value to the current date/time // minuteStepping: 1, //set the minute stepping // minDate: '1/1/1900', //set a minimum date // maxDate: '31/12/2099', //set a maximum date (defaults to today +100 years) // showToday: true, //shows the today indicator // language: 'en', //sets language locale // defaultDate: "", //sets a default date, accepts js dates, strings and moment objects // disabledDates: [], //an array of dates that cannot be selected // enabledDates: [], //an array of dates that can be selected // icons: { // time: 'glyphicon glyphicon-time', // date: 'glyphicon glyphicon-calendar', // up: 'glyphicon glyphicon-chevron-up', // down: 'glyphicon glyphicon-chevron-down' // }, // // useStrict: false, //use "strict" when validating dates // sideBySide: false, //show the date and time picker side by side // daysOfWeekDisabled: [] //for example use daysOfWeekDisabled: [0,6] to disable weekends // };
+                $('#datetimepicker1').datetimepicker();
                 console.log($('#html5Form'));
                 $('#html5Form').bootstrapValidator();
 
             });
         </script>
+    </div>
 </body>
 
 </html>
