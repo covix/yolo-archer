@@ -74,7 +74,17 @@ body {
     border-bottom: 1px solid #e5e5e5;
     color: black;
 }
-.results #first #first-row {
+.results #first ul li {
+    border: 2px solid;
+    list-style-type: none;
+}
+.results #first ul li #first-row {
+    display: block;
+}
+.results #first ul li img {
+    height: 25px;
+}
+.results #first ul li #second-row {
     display: block;
 }
 /* Supporting marketing content */
