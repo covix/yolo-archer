@@ -74,6 +74,9 @@ body {
     border-bottom: 1px solid #e5e5e5;
     color: black;
 }
+.results #first #first-row {
+    display: block;
+}
 /* Supporting marketing content */
 
 .marketing {
