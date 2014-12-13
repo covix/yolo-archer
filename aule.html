@@ -78,52 +78,51 @@
             <hr/>
 
         </div>
-    </div>
 
-    <footer class="footer">
-        <p>Brunella © Company 2014</p>
-    </footer>
+        <footer class="footer">
+            <p>Brunella © Company 2014</p>
+        </footer>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
-    <script src="js/moment.js"></script>
-    <script type="text/javascript">
-        $(function () {
+        <script src="js/moment.js"></script>
+        <script type="text/javascript">
+            $(function () {
 
-            $.fn.datetimepicker.defaults = {
-                pickDate: true, //en/disables the date picker
-                pickTime: true, //en/disables the time picker
-                useMinutes: true, //en/disables the minutes picker
-                useSeconds: true, //en/disables the seconds picker
-                useCurrent: true, //when true, picker will set the value to the current date/time     
-                minuteStepping: 1, //set the minute stepping
-                minDate: '1/1/1900', //set a minimum date
-                maxDate: '31/12/2099', //set a maximum date (defaults to today +100 years)
-                showToday: true, //shows the today indicator
-                language: 'en', //sets language locale
-                defaultDate: "", //sets a default date, accepts js dates, strings and moment objects
-                disabledDates: [], //an array of dates that cannot be selected
-                enabledDates: [], //an array of dates that can be selected
-                icons: {
-                    time: 'glyphicon glyphicon-time',
-                    date: 'glyphicon glyphicon-calendar',
-                    up: 'glyphicon glyphicon-chevron-up',
-                    down: 'glyphicon glyphicon-chevron-down'
-                },
+                $.fn.datetimepicker.defaults = {
+                    pickDate: true, //en/disables the date picker
+                    pickTime: true, //en/disables the time picker
+                    useMinutes: true, //en/disables the minutes picker
+                    useSeconds: true, //en/disables the seconds picker
+                    useCurrent: true, //when true, picker will set the value to the current date/time     
+                    minuteStepping: 1, //set the minute stepping
+                    minDate: '1/1/1900', //set a minimum date
+                    maxDate: '31/12/2099', //set a maximum date (defaults to today +100 years)
+                    showToday: true, //shows the today indicator
+                    language: 'en', //sets language locale
+                    defaultDate: "", //sets a default date, accepts js dates, strings and moment objects
+                    disabledDates: [], //an array of dates that cannot be selected
+                    enabledDates: [], //an array of dates that can be selected
+                    icons: {
+                        time: 'glyphicon glyphicon-time',
+                        date: 'glyphicon glyphicon-calendar',
+                        up: 'glyphicon glyphicon-chevron-up',
+                        down: 'glyphicon glyphicon-chevron-down'
+                    },
 
-                useStrict: false, //use "strict" when validating dates  
-                sideBySide: false, //show the date and time picker side by side
-                daysOfWeekDisabled: [] //for example use daysOfWeekDisabled: [0,6] to disable weekends 
-            };
+                    useStrict: false, //use "strict" when validating dates  
+                    sideBySide: false, //show the date and time picker side by side
+                    daysOfWeekDisabled: [] //for example use daysOfWeekDisabled: [0,6] to disable weekends 
+                };
 
-            $('#datetimepicker1').datetimepicker();
-        });
-    </script>
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
 </body>
 
 </html>
