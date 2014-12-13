@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active hidden-xs"><a href="#">Add</a>
+                    </li>
+                    <li role="presentation" class="hidden-xs"><a href="#">Profile</a>
+                    </li>
+                </ul>
+
+                <!--                    <h3 class="text-muted brand" style="text-align: center">Aulapp</h3>-->
+            </nav>
+        </div>
+
+
+        <div class="search">
+            <div class="row">
+                <div class='col-sm-6'>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker1'>
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $(function () {
+                        $('#datetimepicker1').datetimepicker();
+                    });
+                </script>
+
+                <button type="button" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-search"></span> Search
+                </button>
+            </div>
+        </div>
+
+        <div class="results">
+            <h1>Results</h1>
+        </div>
+
+        <div class="row marketing">
+            <div class="col-lg-6">
+                <h4>Cerca l'aula giusta per te</h4>
+                <p>Ma nella vita nulla é gratis.</p>
+
+                <h4>Condividi lo stato delle aule</h4>
+                <p>Guadagna migliaia di punti suggerendo opportunità di studio.</p>
+            </div>
+
+            <div class="col-lg-6">
+                <h4>Avvisa il popolo di Aulapp</h4>
+                <p>Fai conoscere agli altri i tuoi prossimi movimenti.</p>
+
+                <h4>Calcola un integrale del grafico del tuo punteggio</h4>
+                <p>Vinci un dottorato in matematica!</p>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© Company 2014</p>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+
+    <div class="modal fade" id="loginModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    <h2 class="modal-title">Demo login</h2>
+                </div>
+                <form role="form">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Your email">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" disabled>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+
