@@ -69,23 +69,33 @@ body {
     padding: 14px 24px;
     font-size: 21px;
 }
+.search #btnsearch {
+    float: right;
+    padding-right: 15px;
+}
 .results {
-    text-align: center;
-    border-bottom: 1px solid #e5e5e5;
     color: black;
 }
 .results #first ul li {
-    border: 2px solid;
+    /*border: 2px solid;*/
     list-style-type: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 .results #first ul li #first-row {
     display: block;
+    padding-left: 15px;
+}
+.results #first ul li #first-row #time {
+    float: right;
+    padding-right: 15px;
 }
 .results #first ul li img {
     height: 25px;
 }
 .results #first ul li #second-row {
     display: block;
+    padding-left: 15px;
 }
 /* Supporting marketing content */
 
@@ -104,6 +114,7 @@ body {
     .footer {
         padding-right: 0;
         padding-left: 0;
+        text-align: center;
     }
     /* Space out the masthead */
     .header {
