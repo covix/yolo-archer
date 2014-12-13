@@ -1,6 +1,3 @@
 yolo-archer
 ===========
-ciao lella
-caa
-ca
-come stai?
+da rivedere lo sfondo
