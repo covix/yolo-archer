@@ -69,6 +69,7 @@ body {
 .jumbotron .btn {
     padding: 14px 24px;
     font-size: 21px;
+    width: 130px;
 }
 .search {
     padding-bottom: 15px;
