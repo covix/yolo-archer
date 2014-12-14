@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/bootstrapValidator.min.css">
+    <link rel="stylesheet" href="./css/bootstrap-datetimepicker.min.css">
 </head>
 
 <body>
@@ -85,13 +86,11 @@
                     </ul>
                 </div>
 
-
                 <hr/>
 
             </div>
 
         </div>
-
         <footer class="footer">
             <p>Brunella © Company 2014</p>
         </footer>
@@ -103,11 +102,13 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="js/bootstrapValidator.min.js"></script>
-
         <script src="js/moment.js"></script>
+        <script src="js/bootstrap-datetimepicker.min.js"></script>
         <script type="text/javascript">
             $(function () {
-
+                $('#datetimepicker1').datetimepicker({
+                    useMinutes: false,
+                });
                 //                $.fn.datetimepicker.defaults = {
                 //                    pickDate: true, //en/disables the date picker
                 //                    pickTime: true, //en/disables the time picker
@@ -139,6 +140,7 @@
 
             });
         </script>
+    </div>
 </body>
 
 </html>
