@@ -1,3 +1,8 @@
+<?php
+    include "php/api.php";
+    logged_or_die();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +17,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <!-- Latest compiled and minified CSS -->
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">-->
     <link rel="stylesheet" href="./styles/styles.css" </head>
 
     <body>
@@ -48,7 +53,7 @@
                 </div>
                 <hr>
                 <div class="row-marketing">
-                    <label for "niente" class="lblPunti">Punti 25</label>
+                    <label class="lblPunti">Punti 25</label>
                 </div>
 
                 <div class="row-marketing">
@@ -66,7 +71,7 @@
                 </div>
 
                 <footer class="footer">
-                    <p>© Brunella 2014</p>
+                    <p>Brunella © Company 2014</p>
                 </footer>
             </div>
         </div>

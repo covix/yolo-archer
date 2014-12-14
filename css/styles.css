@@ -4,7 +4,12 @@ body {
     /*
     padding-top:20px;
     padding-bottom:20px;*/
+<<<<<<< HEAD
     background: url(../img/06_polka-dots.jpg) repeat center center fixed;
+=======
+    background: url(../img/back-to-school4.jpg) no-repeat center center fixed;
+    background-size: 100% auto;
+>>>>>>> cbe56057a3b4fe4adbce4e58bb93c6154cbc1290
 }
 /* Everything but the jumbotron gets side spacing for mobile first views */
 
@@ -87,6 +92,10 @@ body {
 .jumbotron .btn {
     padding: 14px 24px;
     font-size: 21px;
+    width: 130px;
+}
+.search {
+    padding-bottom: 15px;
 }
 .lblPunti {
     padding: 10px;
