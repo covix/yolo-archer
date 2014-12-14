@@ -4,19 +4,37 @@ body {
     /*
     padding-top:20px;
     padding-bottom:20px;*/
-    background: url(../img/back-to-school4.jpg) no-repeat center center fixed;
+    background: url(../img/06_polka-dots.jpg) repeat center center fixed;
 }
 /* Everything but the jumbotron gets side spacing for mobile first views */
 
+.btnLeft {
+    background-color: #3d3c3a;
+    height: 45px;
+    width: 45px;
+}
+.marketing,
+.footer,
+.jumbotron {
+    margin-right: 15px;
+    margin-left: 15px;
+}
 .header,
 .marketing,
 .footer,
-.container {
+{
     padding-right: 15px;
     padding-left: 15px;
 }
+.center-profile {
+    border-color: transparent;
+    margin-top: 30px;
+    text-align: center;
+}
 .container {
     background-color: white;
+    padding-right: 0px;
+    padding-left: 0px;
 }
 /* Custom page header */
 
@@ -24,6 +42,7 @@ body {
     border-bottom: 1px solid #e5e5e5;
     padding-top: 15px;
     min-height: 75px;
+    background-color: #3d3c3a;
 }
 .header .brand {
     position: absolute;
@@ -34,7 +53,7 @@ body {
 }
 /* Make the masthead heading the same height as the navigation */
 
-.header h3 {
+.header h2 {
     padding-bottom: 19px;
     margin-top: 0;
     margin-bottom: 0;
@@ -68,6 +87,13 @@ body {
 .jumbotron .btn {
     padding: 14px 24px;
     font-size: 21px;
+}
+.lblPunti {
+    padding: 10px;
+    text-align: center;
+    border-style: outset;
+    margin-top: 40px;
+    width: 75px;
 }
 .search #btnsearch {
     float: right;
@@ -132,6 +158,7 @@ body {
 }
 .persone legend {
     padding: 2px;
+    border-bottom-style: none;
 }
 /* Supporting marketing content */
 
@@ -176,4 +203,30 @@ body {
 .modal-footer {
     padding-left: 40px;
     padding-right: 40px;
+}
+.padLeft {
+    padding-right: 10px;
+}
+.tblLikes {
+    border-top-style: outset;
+    border-left-style: outset;
+    border-right-style: outset;
+    margin-top: 20px;
+    text-align: center;
+}
+.leftTh {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: green;
+    text-decoration-color: green;
+}
+.rightTh {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: red;
+    text-decoration-color: red;
 }
