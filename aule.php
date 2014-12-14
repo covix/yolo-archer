@@ -36,15 +36,32 @@
             </nav>
         </div>
 
-
+        <?php
+            if (!isset ($_POST['edificio']))
+            {
+            ?>
+            <div class="row-marketing">
+                <div class="alert alert-info" role="alert">
+                    Start you research, by pressing the button.. search!
+                </div>
+            </div>
+            <?php
+            }
+        ?>
         <form class="form-inline" method="post" action="">
             <div class="form-group">
                <select class="form-control" name="edificio">
                     <?php
                         $arrrgh = get_edifici();
                         $s = "";
-                        foreach ($arrrgh as &$value) {
-                            $s = $s."<option value='$value'>$value</option>";
+                        foreach ($arrrgh as &$value)
+                        {
+                            $selected = "";
+                            if ( $_POST['edificio'] == $value)
+                            {
+                                $selected = "selected";
+                            }
+                            $s = $s."<option value='$value' $selected>$value</option>";
                         }
                         echo $s;
                     ?>
@@ -96,6 +113,7 @@
                 }
                 echo $s;
             }
+
         ?>
 
         <footer class="footer">
