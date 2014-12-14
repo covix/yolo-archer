@@ -144,6 +144,9 @@ body {
     padding-left: 40px;
     padding-right: 40px;
 }
+.padLeft {
+    padding-right: 10px;
+}
 .tblLikes {
     border-top-style: outset;
     border-left-style: outset;
