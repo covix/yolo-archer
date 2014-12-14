@@ -1,8 +1,10 @@
 <?php
 session_start();
 
-function get_esisteutente($email)
+function get_esisteutente()
 {
+	$email = get_nomeutente();
+
 	$servername = "fdb13.atspace.me";
 	$username = "1762595_maindb";
 	$password = "Ciao1234";
@@ -21,7 +23,7 @@ function get_esisteutente($email)
 	return $esiste;
 }
 
-function get_punti_utente($email)
+function get_punti_utente()
 {
 	$servername = "fdb13.atspace.me";
 	$username = "1762595_maindb";
