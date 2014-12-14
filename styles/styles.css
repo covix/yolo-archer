@@ -1,0 +1,168 @@
+/* Space out content a bit */
+
+.bianco {
+    color: #42C0FB;
+    text-decoration-color: #42C0FB;
+    display: inline;
+}
+body {
+    /*
+    padding-top:20px;
+    padding-bottom:20px;*/
+    background: url(../img/back-to-school4.jpg) no-repeat center center fixed;
+}
+/* Everything but the jumbotron gets side spacing for mobile first views */
+
+.btnLeft {
+    background-color: #3d3c3a;
+    height: 45px;
+}
+.marketing,
+.footer,
+.jumbotron {
+    margin-right: 15px;
+    margin-left: 15px;
+}
+.header,
+.marketing,
+.footer,
+{
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.center-profile {
+    border-color: transparent;
+    margin-top: 30px;
+    text-align: center;
+}
+.container {
+    background-color: white;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+/* Custom page header */
+
+.header {
+    border-bottom: 1px solid #e5e5e5;
+    padding-top: 15px;
+    min-height: 75px;
+    background-color: #3d3c3a;
+}
+.header .brand {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin: auto;
+}
+/* Make the masthead heading the same height as the navigation */
+
+.header h2 {
+    padding-bottom: 19px;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    color: white;
+}
+/* Custom page footer */
+
+.footer {
+    padding-top: 19px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+}
+/* Customize container */
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 730px;
+    }
+}
+.container-narrow > hr {
+    margin: 30px 0;
+}
+/* Main marketing message and sign up button */
+
+.jumbotron {
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
+    background: url(../img/bluured.jpg) center;
+    color: white;
+}
+.jumbotron .btn {
+    padding: 14px 24px;
+    font-size: 21px;
+}
+.lblPunti {
+    padding: 10px;
+    text-align: center;
+    border-style: outset;
+    margin-top: 40px;
+    width: 75px;
+}
+/* Supporting marketing content */
+
+.marketing {
+    margin: 40px 0;
+}
+.marketing p + h4 + h3 {
+    margin-top: 28px;
+}
+/* Responsive: Portrait tablets and up */
+
+@media screen and (min-width: 768px) {
+    /* Remove the padding we set earlier */
+    .header,
+    .marketing,
+    .footer {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    /* Space out the masthead */
+    .header {
+        margin-bottom: 30px;
+    }
+    /* Remove the bottom border on the jumbotron for visual effect */
+    .jumbotron {
+        border-bottom: 0;
+    }
+}
+/* Thumbnail */
+
+.thumbnail {
+    background-color: initial;
+    border: initial;
+}
+/* Modal */
+
+.modal-body {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.modal-footer {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.tblLikes {
+    border-top-style: outset;
+    border-left-style: outset;
+    border-right-style: outset;
+    margin-top: 20px;
+    text-align: center;
+}
+.leftTh {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: green;
+    text-decoration-color: green;
+}
+.rightTh {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: red;
+    text-decoration-color: red;
+}
