@@ -90,10 +90,10 @@
                         </button>
                         <h2 class="modal-title">Login</h2>
                     </div>
-                    <form role="form" method="post" action="php/login.php">
+                    <form role="form" method="post" action="./php/login.php">
                         <div class="modal-body">
                             <div class="form-group">
-                                <input type="email" class="form-control" id="email" placeholder="Your email">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Your email">
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" disabled>

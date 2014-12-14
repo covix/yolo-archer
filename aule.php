@@ -37,73 +37,66 @@
         </div>
 
 
-        <form class="form-inline">
+        <form class="form-inline" method="post" action="">
             <div class="form-group">
-               <select class="form-control">
+               <select class="form-control" name="edificio">
                     <?php
                         $arrrgh = get_edifici();
                         $s = "";
                         foreach ($arrrgh as &$value) {
-                            $s = $s.'<option value="$value">$value</option>';
+                            $s = $s."<option value='$value'>$value</option>";
                         }
-                        echo s;
+                        echo $s;
                     ?>
                 </select>
             </div>
             <div class="form-group">
-                <button type="button" class="btn btn-default" id="btnsearch">
+                <button type="submit" class="btn btn-default" id="btnsearch">
                     <span class="glyphicon glyphicon-search"></span> Search
                 </button>
             </div>
         </form>
-        <div class="clearfix">
-            <hr>
-            <h2>A201 <small>Fino alle 12:30</small></h2>
-            <div class="col-sm-4">
-                <p>15 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                </p>
-            </div>
-            <div class="col-sm-4">
-                <cite>Someone very important said</cite>
-            </div>
-            <div class="col-sm-4">
-                <p>20 <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                    15 <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-                </p>
-            </div>
-        </div>
-        <div class="clearfix">
-            <hr>
-            <h2>A201 <small>Fino alle 12:30</small></h2>
-            <div class="col-sm-4">
-                <p>15 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                </p>
-            </div>
-            <div class="col-sm-4">
-                <cite>Someone very important said</cite>
-            </div>
-            <div class="col-sm-4">
-                <p>20 <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                    15 <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-                </p>
-            </div>
-        </div>
-        <div class="clearfix">
-            <hr>
-            <h2>A201 <small>Fino alle 12:30</small></h2>
-            <div class="col-sm-4">
-                <p>15 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                </p>
-            </div>
-            <div class="col-sm-4">
-                <cite>Someone very important said</cite>
-            </div>
-            <div class="col-sm-4">
-                <p>20 <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                    15 <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-                </p>
-            </div>
-        </div>
+        <?php
+            if( isset($_POST['edificio']) )
+            {
+                $arrrgh = get_stanze_adesso();
+                $s = "";
+                foreach ($arrrgh as &$value)
+                {
+                    $testo = "Non ci sono commenti disponibili";
+                    $like = 0;
+                    $dislike = 0;
+                    $quantepersone = 0;
+                    $time = "N/A";
+
+                    if (sizeof($value->commenti) > 0)
+                    {
+                        $testo = $value->commenti[0]->testo;
+                        $like = $value->commenti[0]->likes;
+                        $dislike = $value->commenti[0]->dislike;
+                        $quantepersone = $value->commenti[0]->quante_persone;
+                        $time = date("H:i", $value->commenti[0]->timestamp);
+                    }
+                    $s = $s."<div class='clearfix'>
+                                <hr>
+                                <h2>$value->nome <small>Ultimo commento alle $time</small></h2>
+                                <div class='col-sm-4'>
+                                    <p>$quantepersone / $value->capienza <span class='glyphicon glyphicon-user' aria-hidden='true'></span>
+                                    </p>
+                                </div>
+                                <div class=col-sm-4>
+                                    <cite>$testo</cite>
+                                </div>
+                                <div class=col-sm-4>
+                                    <p>$like <span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span>
+                                        $dislike <span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span>
+                                    </p>
+                                </div>
+                            </div>";
+                }
+                echo $s;
+            }
+        ?>
 
         <footer class="footer">
             <p>Brunella © Company 2014</p>

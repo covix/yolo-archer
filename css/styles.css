@@ -5,7 +5,11 @@ body {
     padding-top:20px;
     padding-bottom:20px;*/
     background: url(../img/back-to-school4.jpg) no-repeat center center fixed;
-    background-size: 100% auto;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
 }
 /* Everything but the jumbotron gets side spacing for mobile first views */
 
