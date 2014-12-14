@@ -292,7 +292,7 @@ function get_stanze_libere_adesso_ma_devo_aggiungere_i_likes($edificio, $adesso)
 			EDIFICIO.id_edificio = EVENTO.id_edificio AND
 			STANZA.id_edificio = EVENTO.id_edificio AND
 			STANZA.nome = EVENTO.nome_stanza AND
-			(EVENTO.inizio > $adesso AND EVENTO.fine > $adesso OR EVENTO.inizio < $adesso AND EVENTO.fine < $adesso) AND
+			(EVENTO.inizio > $adesso OR EVENTO.fine < $adesso) AND
 			EDIFICIO.nome_corto LIKE '$edificio' AND
 			STANZA.nome NOT IN
 			(
@@ -322,14 +322,13 @@ function get_stanze_libere_adesso_ma_devo_aggiungere_i_likes($edificio, $adesso)
 		}
 	}
 	$conn->close();
-
 	return $stanze;
 }
 function get_stanze_adesso()
 {
 	date_default_timezone_set('Europe/Rome');
 	$edificio = $_POST["edificio"];
-	$adesso = 1418117400;//time();
+	$adesso = time();
 
 	$stanze = get_stanze_libere_adesso_ma_devo_aggiungere_i_likes($edificio, $adesso);
 
@@ -359,7 +358,8 @@ function get_stanze_adesso()
 			VOTO.nome_stanza    = COMMENTO.nome_stanza AND
 			VOTO.email_commento = COMMENTO.email_utente AND
 			VOTO.time_unix      = COMMENTO.time_unix
-		GROUP BY email_utente, VOTO.time_unix, testo, persone";
+		GROUP BY email_utente, VOTO.time_unix, testo, persone
+        ORDER BY COMMENTO.time_unix DESC"`;
 
 		//echo $query."<br />";
 

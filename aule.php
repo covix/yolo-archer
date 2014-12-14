@@ -37,73 +37,50 @@
         </div>
 
 
-        <form class="form-inline">
+        <form class="form-inline" method="post" action="">
             <div class="form-group">
-               <select class="form-control">
+               <select class="form-control" name="edificio">
                     <?php
                         $arrrgh = get_edifici();
                         $s = "";
                         foreach ($arrrgh as &$value) {
-                            $s = $s.'<option value="$value">$value</option>';
+                            $s = $s."<option value=$value>$value</option>";
                         }
-                        echo s;
+                        echo $s;
                     ?>
                 </select>
             </div>
             <div class="form-group">
-                <button type="button" class="btn btn-default" id="btnsearch">
+                <button type="submit" class="btn btn-default" id="btnsearch">
                     <span class="glyphicon glyphicon-search"></span> Search
                 </button>
             </div>
         </form>
-        <div class="clearfix">
-            <hr>
-            <h2>A201 <small>Fino alle 12:30</small></h2>
-            <div class="col-sm-4">
-                <p>15 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                </p>
-            </div>
-            <div class="col-sm-4">
-                <cite>Someone very important said</cite>
-            </div>
-            <div class="col-sm-4">
-                <p>20 <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                    15 <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-                </p>
-            </div>
-        </div>
-        <div class="clearfix">
-            <hr>
-            <h2>A201 <small>Fino alle 12:30</small></h2>
-            <div class="col-sm-4">
-                <p>15 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                </p>
-            </div>
-            <div class="col-sm-4">
-                <cite>Someone very important said</cite>
-            </div>
-            <div class="col-sm-4">
-                <p>20 <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                    15 <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-                </p>
-            </div>
-        </div>
-        <div class="clearfix">
-            <hr>
-            <h2>A201 <small>Fino alle 12:30</small></h2>
-            <div class="col-sm-4">
-                <p>15 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                </p>
-            </div>
-            <div class="col-sm-4">
-                <cite>Someone very important said</cite>
-            </div>
-            <div class="col-sm-4">
-                <p>20 <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                    15 <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-                </p>
-            </div>
-        </div>
+        <?php
+            if( isset($_POST['edificio']) )
+            {
+                $arrrgh = get_stanze_adesso();
+                foreach ($arrrgh as &$value) {
+                    $s = $s."<div class='clearfix'>
+                                <hr>
+                                <h2>$value->nome <small>Fino alle 12:30</small></h2>
+                                <div class='col-sm-4'>
+                                    <p>15 <span class='glyphicon glyphicon-user' aria-hidden='true'></span>
+                                    </p>
+                                </div>
+                                <div class=col-sm-4>
+                                    <cite>Someone very important said</cite>
+                                </div>
+                                <div class=col-sm-4>
+                                    <p>20 <span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span>
+                                        15 <span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span>
+                                    </p>
+                                </div>
+                            </div>";
+                }
+                echo $s;
+            }
+        ?>
 
         <footer class="footer">
             <p>Brunella © Company 2014</p>
