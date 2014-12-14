@@ -69,9 +69,9 @@ function get_stanze_prenotazioni()
 	date_default_timezone_set('Europe/Rome');
 	$edif = $_POST["edificio"];
 	$edificio = get_idedificio($edif);
-	$inizio = 0; //strtotime($_POST['timestamp']);
+	$inizio = strtotime($_POST['inizio']);
 
-	$fine = 99999999999; //strtotime(date("Y-m-d", $inizio)) + 19 * 3600;
+	$fine = strtotime(date("Y-m-d", $inizio)) + 19 * 3600;
 
 	$stanze = get_stanze_libere_adesso_ma_devo_aggiungere_le_prenotazioni_e_le_lezioni($edificio, $inizio, $fine);
 
@@ -170,6 +170,7 @@ function get_stanze_prenotazioni()
 		$s->json = $jsona;
 	}
 	$conn->close();
+
 
 
 	return $stanze;
