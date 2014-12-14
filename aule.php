@@ -14,12 +14,6 @@
             <h1>A<span>ul</span>e</h1>
         </header>
 
-        <div id="divtesto">
-            <p>
-
-            </p>
-        </div>
-
         <div id="divdwnl">
             <div class="separatore"></div>
 			<p>INSERISCI COMMENTO</p>
@@ -27,9 +21,7 @@
                 <br>
                 <input type="text" name="testo"    value="Ciao sono un commento">
 				<br>
-                <input type="text" name="email"    value="pipino@gmail.com">
-                <br>
-				<input type="text" name="persone"  value="50">
+                <input type="text" name="persone"  value="50">
                 <br>
 				<input type="text" name="stanza"   value="A103">
                 <br>
@@ -39,25 +31,12 @@
             </form>
 
 			<div class="separatore"></div>
-			<p>INSERISCI UTENTE</p>
-            <form action="php/insert_utente.php" method="POST">
-                <br>
-                <input type="text" name="email"    value="pipinoilbreve@gmail.com">
-                <br>
-				<input type="text" name="password"  value="ciao_come_sono_breve">
-                <br>
-                <input type="submit" value="login">
-            </form>
-
-			<div class="separatore"></div>
 			<p>LIKE</p>
             <form action="php/like.php" method="POST">
                 <br>
-                <input type="text" name="email_commento"    value="pipino@gmail.com">
+                <input type="text" name="email_commento" value="pipino@gmail.com">
                 <br>
-				<input type="text" name="email_votante"  value="pipinoilbreve@gmail.com">
-                <br>
-				<input type="text" name="stanza"   value="A103">
+				<input type="text" name="stanza" value="A103">
                 <br>
 				<input type="text" name="edificio" value="Povo">
 				<br>
@@ -71,8 +50,6 @@
             <form action="php/dislike.php" method="POST">
                 <br>
                 <input type="text" name="email_commento"    value="pipino@gmail.com">
-                <br>
-				<input type="text" name="email_votante"  value="pipinoilbreve@gmail.com">
                 <br>
 				<input type="text" name="stanza"   value="A103">
                 <br>
@@ -100,8 +77,6 @@
 				<br>
 				<input type="text" name="fine" value="1418489895">
 				<br>
-                <input type="text" name="email"    value="pipino@gmail.com">
-                <br>
 				<input type="text" name="persone"  value="50">
                 <br>
 				<input type="text" name="stanza"   value="A103">
@@ -112,7 +87,7 @@
             </form>
 
 			<div class="separatore"></div>
-			<p>AULE_BOH</p>
+			<p>AULE_PRENOTAZIONE</p>
             <form action="php/get_stanze_boh.php" method="POST">
 				<br>
 				<input type="text" name="inizio" value="1418489890">
