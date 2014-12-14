@@ -11,3 +11,5 @@ titoli alle pagine (done)
 immagine profilo intercambiabile?
 
 chiedere ai backendtisti se dobbiamo mettere "valido per"
+
+padding tasto logout
