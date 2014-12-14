@@ -90,18 +90,51 @@
                                     google.setOnLoadCallback(drawChart);
                                     function drawChart() {
                                     var data = google.visualization.arrayToDataTable(<?php echo $s->json ?>);
+                                    function drawChart()
+                                    {
+                                        var data;
+                                        data.addColumn('date', 'Data');
+                                        data.addColumn('number', 'Persone');
+                                        data.addColumn('number', 'Lezione');
+
+                                        dataTable.addRows([new Date(<?php echo $s->inizio ?>), 0, 0]);
+
+
+                                        <?php
+                                            foreach($s->lezioni_dalle_INIZIO_alle_7 as &$p)
+                                            {
+                                        ?>
+                                                dataTable.addRows([new Date(<?php echo ($p->inizio-1) ?>), 0, 0]);
+                                                dataTable.addRows([new Date(<?php echo $p->inizio ?>), 0, <?php echo $p->capienza ?>]);
+                                                dataTable.addRows([new Date(<?php echo $p->fine ?>), 0, <?php echo $p->capienza ?>]);
+                                                dataTable.addRows([new Date(<?php echo ($p->fine+1) ?>), 0, 0]);
+
+                                        <?php
+                                            }
+                                        ?>
+
+                                        dataTable.addRows([new Date(<?php echo $s->fine ?>), 0, 0]);
+
+
 
                                     var options = {
                                     title: 'Company Performance',
-                                    hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
-                                    vAxis: {minValue: 0}
+                                    vAxis: {minValue: 0, maxValue : <?php echo $s->capienza ?>},
+                                    isStacked: true,
                                     };
 
+
+                                    var dataView = new google.visualization.DataView(data);
+                                    dataView.setColumns([{calc: function(data, row) { return data.getFormattedValue(row, 0); }, type:'string'}, 1]);
+
+
                                     var chart = new google.visualization.AreaChart(document.getElementById('chart_div_<?php echo $i ?>'));
-                                    chart.draw(data, options);
+                                    chart.draw(dataView, options);
+
+
                                     }
                                 </script>
-                                <div id='chart_div_<?php echo $i ?>' style="width:300px; height:250px;"></div>
+                                <div id='chart_div_<?php echo $i ?>' style="width:600px; height:250px;"></div>
                             <?php
                             }
                             ?>

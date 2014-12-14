@@ -21,7 +21,7 @@ class Stanza_prenotata
 	public $edificio = '';
 	public $capienza = 0;
 	public $prenotazioni_dalle_INIZIO_alle_7 = array();
-	public $eventi_dalle_INIZIO_alle_7 = array();
+	public $lezioni_dalle_INIZIO_alle_7 = array();
 	public $json = '';
 }
 
@@ -70,7 +70,6 @@ function get_stanze_prenotazioni()
 	$edif = $_POST["edificio"];
 	$edificio = get_idedificio($edif);
 	$inizio = strtotime($_POST['inizio']);
-
 	$fine = strtotime(date("Y-m-d", $inizio)) + 19 * 3600;
 
 	$stanze = get_stanze_libere_adesso_ma_devo_aggiungere_le_prenotazioni_e_le_lezioni($edificio, $inizio, $fine);
@@ -158,13 +157,22 @@ function get_stanze_prenotazioni()
 				}
 		}
 		ksort($points);
-		$jsona = '[["Data", "Persone"], ["'.date("H:i:s", $inizio).'", 0], ';
+		$jsona = '[["Data", "DataS", "Persone", "Lezione"], ["'.date("H:i:s", $inizio).'", 0, 0], ';
 		$integrale = 0;
 		foreach($points as $key => $val)
 		{
-			$jsona .= '["'.date("H:i:s", $key).'", '.($integrale += $val)."], ";
+			$jsona .= '["'.date("H:i:s", $key).'", '.($integrale += $val).', 0], ';
 		}
-		$jsona .= '["'.date("H:i:s", $fine).'", 0]] ';
+
+        foreach($s->lezioni_dalle_INIZIO_alle_7 as &$p)
+		{
+			$jsona .= '["'.date("H:i:s", $p->inizio-1).'", 0, 0], ';
+			$jsona .= '["'.date("H:i:s", $p->inizio).'", 0, '.$p->capienza.'], ';
+			$jsona .= '["'.date("H:i:s", $p->fine).'", 0, '.$p->capienza.'], ';
+			$jsona .= '["'.date("H:i:s", $p->fine+1).'", 0, 0], ';
+		}
+
+		$jsona .= '["'.date("H:i:s", $fine).'", 0, 0]] ';
 		$jsona = str_replace(", ]", "]", $jsona);
 		//echo $jsona;
 		$s->json = $jsona;
@@ -172,10 +180,6 @@ function get_stanze_prenotazioni()
 	$conn->close();
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> AulApp/master
 	return $stanze;
 }
 
