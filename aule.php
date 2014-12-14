@@ -44,7 +44,7 @@
                         $arrrgh = get_edifici();
                         $s = "";
                         foreach ($arrrgh as &$value) {
-                            $s = $s."<option value=$value>$value</option>";
+                            $s = $s."<option value='$value'>$value</option>";
                         }
                         echo $s;
                     ?>
@@ -60,21 +60,26 @@
             if( isset($_POST['edificio']) )
             {
                 $arrrgh = get_stanze_adesso();
-                foreach ($arrrgh as &$value) {
+                $s = "";
+                foreach ($arrrgh as &$value)
+                {
                     $testo = "Non ci sono commenti disponibili";
                     $like = 0;
                     $dislike = 0;
                     $quantepersone = 0;
+                    $time = "N/A";
+
                     if (sizeof($value->commenti) > 0)
                     {
                         $testo = $value->commenti[0]->testo;
-                        $like = $value->commenti[0]->like;
+                        $like = $value->commenti[0]->likes;
                         $dislike = $value->commenti[0]->dislike;
                         $quantepersone = $value->commenti[0]->quante_persone;
+                        $time = date("H:i", $value->commenti[0]->timestamp);
                     }
                     $s = $s."<div class='clearfix'>
                                 <hr>
-                                <h2>$value->nome <small>Fino alle 12:30</small></h2>
+                                <h2>$value->nome <small>Ultimo commento alle $time</small></h2>
                                 <div class='col-sm-4'>
                                     <p>$quantepersone / $value->capienza <span class='glyphicon glyphicon-user' aria-hidden='true'></span>
                                     </p>
