@@ -25,6 +25,8 @@ function get_esisteutente()
 
 function get_punti_utente()
 {
+	$email = get_nomeutente();
+
 	$servername = "fdb13.atspace.me";
 	$username = "1762595_maindb";
 	$password = "Ciao1234";
@@ -43,6 +45,21 @@ function get_punti_utente()
 	$conn->close();
 	return $punti;
 }
+
+
+function perdi_tot_punti($tot)
+{
+	$punti = get_punti_utente() + $tot;
+	$email = get_nomeutente();
+
+	exec_non_query
+	("
+		UPDATE UTENTE
+		SET punti = $punti
+		WHERE email = '$email'
+	");
+}
+
 
 function get_edifici()
 {
@@ -71,7 +88,7 @@ function get_edifici()
 //Si prenota in quella giornata
 function prenota()
 {
-	$email = $_POST["email"];
+	$email = get_nomeutente();
 	$persone = $_POST["persone"];
 	$nome_stanza = $_POST["stanza"];
 	$edificio = $_POST["edificio"];
@@ -89,60 +106,29 @@ class Stanza_prenotata
 	public $nome = '';
 	public $edificio = '';
 	public $capienza = 0;
-	public $persone = 0;
+	public $prenotazioni_dalle_INIZIO_alle_7;
+	public $eventi_dalle_INIZIO_alle_7;
 }
 
-
-function get_stanze_prenotabili()
+function get_stanze_libere_adesso_ma_devo_aggiungere_le_prenotazioni_e_le_lezioni($edificio, $inizio)
 {
-	$edificio = $_POST["edificio"];
-	$id_edificio = get_idedificio($edificio);
-	$inizio = $_POST["inizio"];
-	$fine = $_POST["fine"];
-
-	$stanze_prentotate = array();
+	$stanze = array();
+	$gg = strtotime(date("Y-m-d", $inizio));
+	$fine = $gg + 19 * 3600;
 
 	$servername = "fdb13.atspace.me";
 	$username = "1762595_maindb";
 	$password = "Ciao1234";
 	$dbname = "1762595_maindb";
 
+
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
 
 	$query =
 	"
-		SELECT  STANZA.nome AS nome, EDIFICIO.nome_corto AS edificio, STANZA.capienza AS capienza, SUM(PRENOTAZIONE.persone) AS persone_prenotate
-		FROM PRENOTAZIONE, STANZA, EDIFICIO
-		WHERE
-			PRENOTAZIONE.nome_stanza = STANZA.nome AND
-			EDIFICIO.id_edificio = STANZA.id_edificio AND
-			(PRENOTAZIONE.inizio <= $inizio AND PRENOTAZIONE.fine >= $fine) AND
-			PRENOTAZIONE.nome_stanza IN
-			(
-				SELECT STANZA.nome AS nome
-				FROM EVENTO,EDIFICIO,STANZA
-				WHERE
-					EDIFICIO.id_edificio = EVENTO.id_edificio AND
-					STANZA.id_edificio = EVENTO.id_edificio AND
-					STANZA.nome = EVENTO.nome_stanza AND
-					(inizio > $inizio AND fine > $fine OR inizio < $inizio AND fine < $fine) AND
-					EDIFICIO.nome_corto LIKE '$edificio' AND
-					STANZA.nome NOT IN
-					(
-						SELECT STANZA.nome AS nome
-						FROM EVENTO,EDIFICIO,STANZA
-						WHERE
-							EDIFICIO.id_edificio = EVENTO.id_edificio AND
-							STANZA.id_edificio = EVENTO.id_edificio AND
-							STANZA.nome = EVENTO.nome_stanza AND
-							(inizio <= $inizio AND fine >= $fine) AND
-							EDIFICIO.nome_corto LIKE '$edificio'
-						GROUP BY STANZA.nome
-					)
-				GROUP BY STANZA.nome, EDIFICIO.nome_corto, STANZA.capienza, EDIFICIO.id_edificio
-			)
-		GROUP BY STANZA.nome, EDIFICIO.nome_corto, STANZA.capienza
+		SELECT STANZA.nome AS nome, EDIFICIO.nome_corto AS edificio, STANZA.capienza AS capienza
+		FROM STANZA
 	";
 
 	$result = $conn->query($query);
@@ -154,15 +140,73 @@ function get_stanze_prenotabili()
 			$s->nome = $row["nome"];
 			$s->edificio = $row["edificio"];
 			$s->capienza = $row["capienza"];
-			$s->persone = $row["persone_prenotate"];
-
-			//echo $s->edificio." ".$s->nome." ".$s->capienza." ".$s->persone.":<br />";
-			$stanze_prentotate[] = $s;
+			$stanze[] = $s;
 		}
 	}
 	$conn->close();
 
-	return $stanze_prentotate;
+	return $stanze;
+}
+
+function get_stanze_adesso()
+{
+	date_default_timezone_set('Europe/Rome');
+	$edificio = $_POST["edificio"];
+	$adesso = 1418117400;//time();
+
+	$stanze = get_stanze_libere_adesso_ma_devo_aggiungere_le_prenotazioni_e_le_lezioni($edificio, $adesso);
+
+
+	$servername = "fdb13.atspace.me";
+	$username = "1762595_maindb";
+	$password = "Ciao1234";
+	$dbname = "1762595_maindb";
+
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
+	//aggiungo i commenti
+	foreach ($stanze as &$s)
+	{
+
+
+		$edif = get_idedificio($s->edificio);
+
+		$nomes = $s->nome;
+		$query =
+		"SELECT email_utente AS email, VOTO.time_unix AS tempo, testo AS commento, persone AS quante_persone, SUM(CASE WHEN valore = 1 THEN 1 ELSE 0 END) AS likes, SUM(CASE WHEN valore = -1 THEN 1 ELSE 0 END) AS dislikes
+		FROM COMMENTO, VOTO
+		WHERE
+			COMMENTO.id_edificio = $edif AND
+			COMMENTO.nome_stanza = '$nomes' AND
+			VOTO.id_edificio    = COMMENTO.id_edificio AND
+			VOTO.nome_stanza    = COMMENTO.nome_stanza AND
+			VOTO.email_commento = COMMENTO.email_utente AND
+			VOTO.time_unix      = COMMENTO.time_unix
+		GROUP BY email_utente, VOTO.time_unix, testo, persone";
+
+		//echo $query."<br />";
+
+		$result = $conn->query($query);
+		if ($result->num_rows > 0)
+		{
+			while($row = $result->fetch_assoc())
+			{
+				$c = new Commento();
+				$c->email = $row["email"];
+				$c->timestamp = $row["tempo"];
+				$c->testo = $row["commento"];
+				$c->likes = $row["likes"];
+				$c->dislike = $row["dislikes"];
+				$c->quante_persone = $row["quante_persone"];
+
+				$s->commenti[] = $c;
+			}
+		}
+	}
+	$conn->close();
+
+
+	return $stanze;
 }
 
 
@@ -189,7 +233,8 @@ function exec_non_query($query)
 
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
-	$conn->query($query);
+	if(!$conn->query($query))
+		echo "aaargh";
 	$conn->close();
 }
 function get_idedificio($nome_corto_edificio)
@@ -216,7 +261,7 @@ function get_idedificio($nome_corto_edificio)
 function fai_commento()
 {
 	$testo = $_POST["testo"];
-	$email = $_POST["email"];
+	$email = get_nomeutente();
 	$persone = $_POST["persone"];
 	$nome_stanza = $_POST["stanza"];
 	$edificio = $_POST["edificio"];
@@ -228,7 +273,7 @@ function fai_commento()
 }
 function crea_utente()
 {
-	$email = $_POST["email"];
+	$email = get_nomeutente();
 	$password = $_POST["password"];
 
 	$query =  "INSERT INTO UTENTE VALUES('$email', '$password', 25)";
@@ -239,7 +284,7 @@ function Im_like_and_i_know_it()
 {
 	$edificio = $_POST["edificio"];
 	$id_edificio = get_idedificio($edificio);
-	$email = $_POST["email_votante"];
+	$email = get_nomeutente();
 	$email_commento = $_POST["email_commento"];
 	$nomestanza = $_POST["stanza"];
 	$timestamp = $_POST["timestamp"];
@@ -252,7 +297,7 @@ function Im_dislike_and_i_know_it()
 {
 	$edificio = $_POST["edificio"];
 	$id_edificio = get_idedificio($edificio);
-	$email = $_POST["email_votante"];
+	$email = get_nomeutente();
 	$email_commento = $_POST["email_commento"];
 	$nomestanza = $_POST["stanza"];
 	$timestamp = $_POST["timestamp"];
@@ -298,7 +343,7 @@ function get_stanze_libere_adesso_ma_devo_aggiungere_i_likes($edificio, $adesso)
 			EDIFICIO.id_edificio = EVENTO.id_edificio AND
 			STANZA.id_edificio = EVENTO.id_edificio AND
 			STANZA.nome = EVENTO.nome_stanza AND
-			(inizio > $adesso AND fine > $adesso OR inizio < $adesso AND fine < $adesso) AND
+			(EVENTO.inizio > $adesso AND EVENTO.fine > $adesso OR EVENTO.inizio < $adesso AND EVENTO.fine < $adesso) AND
 			EDIFICIO.nome_corto LIKE '$edificio' AND
 			STANZA.nome NOT IN
 			(
