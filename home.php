@@ -1,3 +1,8 @@
+<?php
+    include "php/api.php";
+    logged_or_die();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

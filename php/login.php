@@ -1,13 +1,16 @@
 <?php
+
 include 'api.php';
 
 set_nomeutente();
 
 if(!get_esisteutente())
 {
-	crea_utente();
+    crea_utente();
 }
+header("Location: /home.php");
 
-header("Location: http://".$_SERVER['HTTP_HOST']."/aule.php");
-die("aiuto aiuto");echo "coviello cagna canshielloooo";
+die( "aiuto aiuto");
+echo "coviello cagna canshielloooo";
+
 ?>

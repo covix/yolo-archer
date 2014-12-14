@@ -9,7 +9,7 @@ body {
     /*
     padding-top:20px;
     padding-bottom:20px;*/
-    background: url(../img/back-to-school4.jpg) no-repeat center center fixed;
+    background: url(../img/06_polka-dots.jpg) repeat center center fixed;
 }
 /* Everything but the jumbotron gets side spacing for mobile first views */
 
@@ -103,6 +103,72 @@ body {
 }
 /* Supporting marketing content */
 
+.search #btnsearch {
+    float: right;
+    padding-right: 15px;
+    margin-right: 25px;
+}
+.results {
+    color: black;
+}
+.results #first ul li {
+    /*border: 2px solid;*/
+    list-style-type: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.results #first ul li #first-row {
+    display: block;
+    padding-left: 15px;
+}
+.results #first ul li #first-row #time {
+    float: right;
+    padding-right: 15px;
+}
+.results #first ul li img {
+    height: 25px;
+}
+.results #first ul li #second-row {
+    display: block;
+    padding-left: 15px;
+}
+.btnshare {
+    display: block;
+}
+/* Select */
+
+.select-style {
+    border: 1px solid #ccc;
+    width: 400px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa url("../img/icon-select2.png") no-repeat 90% 50%;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+}
+.select-style select {
+    padding: 5px 8px;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+.select-style select:focus {
+    outline: none;
+}
+.persone fieldset {
+    margin: 8px;
+    border: 1px solid silver;
+    padding: 8px;
+    border-radius: 4px;
+}
+.persone legend {
+    padding: 2px;
+    border-bottom-style: none;
+}
 .marketing {
     margin: 40px 0;
 }
