@@ -6,6 +6,6 @@ modificato header: colore grigio, largo come container
 
 spostato h2 Aulapp prima del nav
 
-titoli alle pagine
+titoli alle pagine (done)
 
 immagine profilo intercambiabile?
