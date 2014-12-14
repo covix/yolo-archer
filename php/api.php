@@ -148,68 +148,6 @@ function get_stanze_libere_adesso_ma_devo_aggiungere_le_prenotazioni_e_le_lezion
 	return $stanze;
 }
 
-function get_stanze_adesso()
-{
-	date_default_timezone_set('Europe/Rome');
-	$edificio = $_POST["edificio"];
-	$adesso = 1418117400;//time();
-
-	$stanze = get_stanze_libere_adesso_ma_devo_aggiungere_le_prenotazioni_e_le_lezioni($edificio, $adesso);
-
-
-	$servername = "fdb13.atspace.me";
-	$username = "1762595_maindb";
-	$password = "Ciao1234";
-	$dbname = "1762595_maindb";
-
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
-	//aggiungo i commenti
-	foreach ($stanze as &$s)
-	{
-
-
-		$edif = get_idedificio($s->edificio);
-
-		$nomes = $s->nome;
-		$query =
-		"SELECT email_utente AS email, VOTO.time_unix AS tempo, testo AS commento, persone AS quante_persone, SUM(CASE WHEN valore = 1 THEN 1 ELSE 0 END) AS likes, SUM(CASE WHEN valore = -1 THEN 1 ELSE 0 END) AS dislikes
-		FROM COMMENTO, VOTO
-		WHERE
-			COMMENTO.id_edificio = $edif AND
-			COMMENTO.nome_stanza = '$nomes' AND
-			VOTO.id_edificio    = COMMENTO.id_edificio AND
-			VOTO.nome_stanza    = COMMENTO.nome_stanza AND
-			VOTO.email_commento = COMMENTO.email_utente AND
-			VOTO.time_unix      = COMMENTO.time_unix
-		GROUP BY email_utente, VOTO.time_unix, testo, persone";
-
-		//echo $query."<br />";
-
-		$result = $conn->query($query);
-		if ($result->num_rows > 0)
-		{
-			while($row = $result->fetch_assoc())
-			{
-				$c = new Commento();
-				$c->email = $row["email"];
-				$c->timestamp = $row["tempo"];
-				$c->testo = $row["commento"];
-				$c->likes = $row["likes"];
-				$c->dislike = $row["dislikes"];
-				$c->quante_persone = $row["quante_persone"];
-
-				$s->commenti[] = $c;
-			}
-		}
-	}
-	$conn->close();
-
-
-	return $stanze;
-}
-
-
 
 //TESTATEEEEEEEE-----------------------------------------------------------------------------
 function set_nomeutente()
@@ -220,7 +158,18 @@ function get_nomeutente()
 {
 	return $_SESSION["email"];
 }
-
+function is_logged()
+{
+    return isset($_SESSION["email"]);
+}
+function logged_or_die()
+{
+    if (!is_logged())
+    {
+        header("Location: /index.php");
+        die ("702 Not logged");
+    }
+}
 
 
 
