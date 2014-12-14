@@ -42,17 +42,7 @@
                 <div class=form-group>
                     <label class="col-sm-2 control-label">Zona</label>
                     <div class="col-sm-5 col-md-8">
-                        <select class=" form-control">
-                            <option value="povo1">Povo 1</option>
-                            <option value="povo2">Povo 2</option>
-                        </select>
-                    </div>
-                </div>
-                <div class=form-group>
-                    <label class="col-sm-2 control-label">Aula</label>
-                    <div class="col-sm-5 col-md-8">
-                        <select class="form-control">
-
+                        <select name="edificio" class=" form-control">
                             <?php
                                 $arrrgh = get_edifici();
                                 $s = "";
@@ -68,8 +58,14 @@
                     <label class="col-sm-2 control-label">Aula</label>
                     <div class="col-sm-5 col-md-8">
                         <select class="form-control">
-                            <option value="a101">A101</option>
-                            <option value="a102">A102</option>
+                            <?php
+                                $arrrgh = get_edifici();
+                                $s = "";
+                                foreach ($arrrgh as &$value) {
+                                    $s = $s.'<option value="$value">$value</option>';
+                                }
+                                echo s;
+                            ?>
                         </select>
                     </div>
                 </div>
