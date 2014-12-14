@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="./css/bootstrap-datetimepicker.min.css">
     <style type="text/css">
     </style>
-
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 </head>
 
@@ -66,11 +65,42 @@
             </div>
         </form>
 
-        <div class="room">
-            <hr>
-            <h2>A201 <small>12:30 - 13:00 Giovedì 10</small></h2>
-            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#prenotaModal">Prenota</button>
-            <br>
+
+
+            <?php
+
+            $stanze = get_stanze_prenotazioni();
+
+            foreach($stanze as &$s)
+            {
+                ?>
+                    <div class="room">
+                        <hr>
+                        <h2><?php echo $s->nome ?> <small>Data e ora de che?</small></h2>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#prenotaModal">Prenota</button>
+                        <br>
+                        <script type="text/javascript">
+                            google.load("visualization", "1", {packages:["corechart"]});
+                            google.setOnLoadCallback(drawChart);
+                            function drawChart() {
+                            var data = google.visualization.arrayToDataTable(<?php echo $s->json ?>);
+
+                            var options = {
+                            title: 'Company Performance',
+                            hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+                            vAxis: {minValue: 0}
+                            };
+
+                            var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                            chart.draw(data, options);
+                            }
+                        </script>
+                    </div>
+                <?php
+            }
+
+            ?>
+
             <!--
             <p>Hanno già detto che ci saranno: 15
     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
