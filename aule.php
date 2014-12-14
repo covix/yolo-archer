@@ -61,19 +61,30 @@
             {
                 $arrrgh = get_stanze_adesso();
                 foreach ($arrrgh as &$value) {
+                    $testo = "Non ci sono commenti disponibili";
+                    $like = 0;
+                    $dislike = 0;
+                    $quantepersone = 0;
+                    if (sizeof($value->commenti) > 0)
+                    {
+                        $testo = $value->commenti[0]->testo;
+                        $like = $value->commenti[0]->like;
+                        $dislike = $value->commenti[0]->dislike;
+                        $quantepersone = $value->commenti[0]->quante_persone;
+                    }
                     $s = $s."<div class='clearfix'>
                                 <hr>
                                 <h2>$value->nome <small>Fino alle 12:30</small></h2>
                                 <div class='col-sm-4'>
-                                    <p>15 <span class='glyphicon glyphicon-user' aria-hidden='true'></span>
+                                    <p>$quantepersone / $value->capienza <span class='glyphicon glyphicon-user' aria-hidden='true'></span>
                                     </p>
                                 </div>
                                 <div class=col-sm-4>
-                                    <cite>Someone very important said</cite>
+                                    <cite>$testo</cite>
                                 </div>
                                 <div class=col-sm-4>
-                                    <p>20 <span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span>
-                                        15 <span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span>
+                                    <p>$like <span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span>
+                                        $dislike <span class='glyphicon glyphicon-thumbs-down' aria-hidden='true'></span>
                                     </p>
                                 </div>
                             </div>";

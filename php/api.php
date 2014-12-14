@@ -359,7 +359,7 @@ function get_stanze_adesso()
 			VOTO.email_commento = COMMENTO.email_utente AND
 			VOTO.time_unix      = COMMENTO.time_unix
 		GROUP BY email_utente, VOTO.time_unix, testo, persone
-        ORDER BY COMMENTO.time_unix DESC"`;
+        ORDER BY COMMENTO.time_unix DESC";
 
 		//echo $query."<br />";
 
