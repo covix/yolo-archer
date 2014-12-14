@@ -69,6 +69,9 @@ body {
     padding: 14px 24px;
     font-size: 21px;
 }
+.search {
+    padding-bottom: 15px;
+}
 .search #btnsearch {
     float: right;
     padding-right: 15px;
