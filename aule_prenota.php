@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="./css/bootstrap-datetimepicker.min.css">
     <style type="text/css">
     </style>
-
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 </head>
 
@@ -38,92 +37,86 @@
             </nav>
         </div>
 
-        <form class="form-inline">
+        <form class="form-inline" method="post" action="">
             <div class="form-group">
-                <!--                <input class="form-control" type="text" placeholder="Povo" disabled>-->
-                <select class="form-control">
+               <select class="form-control" name="edificio">
                     <?php
                         $arrrgh = get_edifici();
                         $s = "";
                         foreach ($arrrgh as &$value) {
-                            $s = $s.'<option value="$value">$value</option>';
+                            $s = $s."<option value='$value'>$value</option>";
                         }
-                        echo s;
+                        echo $s;
                     ?>
                 </select>
             </div>
             <div class="form-group">
                 <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" data-date-format="DD/MM/YYYY hh:mm A" />
+                    <input type='text' class="form-control" name="inizio" data-date-format="" />
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
             </div>
             <div class="form-group">
-                <button type="button" class="btn btn-default" id="btnsearch">
+                <button type="submit" class="btn btn-default" id="btnsearch">
                     <span class="glyphicon glyphicon-search"></span> Search
                 </button>
             </div>
         </form>
 
-        <div class="room">
-            <hr>
-            <h2>A201 <small>12:30 - 13:00 Giovedì 10</small></h2>
-            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#prenotaModal">Prenota</button>
-            <br>
+
+
+            <?php
+
+            if( isset($_POST['edificio']) )
+            {
+                $stanze = get_stanze_prenotazioni();
+                $i = 0;
+                foreach($stanze as &$s)
+                {
+                    ?>
+                        <div class="room">
+                            <hr>
+                            <h2><?php echo $s->nome ?> <small>Data e ora de che?</small></h2>
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#prenotaModal">Prenota</button>
+                            <br>
+                            <?php
+                            if (true) // (strlen($s->jsona) > 20)
+                            {
+                                $i++;
+                            ?>
+                                <script type="text/javascript">
+                                    google.load("visualization", "1", {packages:["corechart"]});
+                                    google.setOnLoadCallback(drawChart);
+                                    function drawChart() {
+                                    var data = google.visualization.arrayToDataTable(<?php echo $s->json ?>);
+
+                                    var options = {
+                                    title: 'Company Performance',
+                                    hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+                                    vAxis: {minValue: 0}
+                                    };
+
+                                    var chart = new google.visualization.AreaChart(document.getElementById('chart_div_<?php echo $i ?>'));
+                                    chart.draw(data, options);
+                                    }
+                                </script>
+                                <div id='chart_div_<?php echo $i ?>' style="width:300px; height:250px;"></div>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                    <?php
+                }
+            }
+
+            ?>
+
             <!--
             <p>Hanno già detto che ci saranno: 15
     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 </p>
 -->
-        </div>
-        <div class="room">
-            <hr>
-            <h2>A201 <small>12:30 - 13:00 Giovedì 10</small></h2>
-
-            <button type="button" class="btn btn-success">Prenota</button>
-            <br>
-            <p>Hanno già detto che ci saranno: 15
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-            </p>
-        </div>
-        <div class="room">
-            <hr>
-            <h2>A201 <small>12:30 - 13:00 Giovedì 10</small></h2>
-            <form class="html5Form form-inline" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
-                <div class="form-group">
-                    <div class="inputContainer">
-                        <input class="form-control" name="number" min="1" type="number" data-bv-integer-message="" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="button" class="btn btn-success">Prenota</button>
-                </div>
-            </form>
-            <br>
-            <p>Hanno già detto che ci saranno: 15
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-            </p>
-        </div>
-        <div class="room">
-            <hr>
-            <h2>A201 <small>12:30 - 13:00 Giovedì 10</small></h2>
-            <form class="html5Form form-inline" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
-                <div class="form-group">
-                    <div class="inputContainer">
-                        <input class="form-control" name="number" min="1" type="number" data-bv-integer-message="" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="button" class="btn btn-success">Prenota</button>
-                </div>
-            </form>
-            <br>
-            <p>Hanno già detto che ci saranno: 15
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-            </p>
-        </div>
-
         <footer class="footer ">
             <p>Brunella © Company 2014</p>
         </footer>
@@ -143,6 +136,13 @@
                         <div class="form-group">
                             <div class="inputContainer" style="display:inline-block">
                                 <input class="form-control" name="number" type="number" placeholder="Quanti sarete?" min="1" data-bv-integer-message="" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker1'>
+                                <input type='text' class="form-control" name="inizio" data-date-format="" />
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                </span>
                             </div>
                         </div>
                     </div>
