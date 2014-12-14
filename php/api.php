@@ -69,15 +69,9 @@ function get_stanze_prenotazioni()
 	date_default_timezone_set('Europe/Rome');
 	$edif = $_POST["edificio"];
 	$edificio = get_idedificio($edif);
-<<<<<<< HEAD
 	$inizio = strtotime($_POST['inizio']);
 
 	$fine = strtotime(date("Y-m-d", $inizio)) + 19 * 3600;
-=======
-	$inizio = 0; //strtotime($_POST['timestamp']);
-
-	$fine = 99999999999; //strtotime(date("Y-m-d", $inizio)) + 19 * 3600;
->>>>>>> AulApp/master
 
 	$stanze = get_stanze_libere_adesso_ma_devo_aggiungere_le_prenotazioni_e_le_lezioni($edificio, $inizio, $fine);
 
