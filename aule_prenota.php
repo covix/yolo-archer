@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="./css/bootstrap-datetimepicker.min.css">
     <style type="text/css">
     </style>
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 </head>
 
 <body>

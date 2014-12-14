@@ -88,19 +88,19 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                         </button>
-                        <h2 class="modal-title">Demo login</h2>
+                        <h2 class="modal-title">Login</h2>
                     </div>
-                    <form role="form">
+                    <form role="form" method="post" action="php/login.php">
                         <div class="modal-body">
                             <div class="form-group">
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Your email">
+                                <input type="email" class="form-control" id="email" placeholder="Your email">
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" disabled>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-lg btn-primary">Login</button>
+                            <button type="submit" class="btn btn-lg btn-primary">Demo Login</button>
                         </div>
                     </form>
                 </div>
