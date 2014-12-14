@@ -97,18 +97,6 @@ body {
     display: block;
     padding-left: 15px;
 }
-/*Numeric input*/
-
-/* Place the HTML 5 spinner at the default position */
-
-#html5Form .inputContainer .form-control {
-    padding-right: 10px;
-}
-/* Adjust feedback icon position */
-
-#html5Form .inputContainer .form-control-feedback {
-    right: -15px;
-}
 /* Supporting marketing content */
 
 .marketing {
