@@ -69,8 +69,9 @@ function get_stanze_prenotazioni()
 	date_default_timezone_set('Europe/Rome');
 	$edif = $_POST["edificio"];
 	$edificio = get_idedificio($edif);
-	$inizio = $_POST["inizio"];
-	$fine = strtotime(date("Y-m-d", $inizio)) + 19 * 3600;
+	$inizio = 0; //strtotime($_POST['timestamp']);
+
+	$fine = 99999999999; //strtotime(date("Y-m-d", $inizio)) + 19 * 3600;
 
 	$stanze = get_stanze_libere_adesso_ma_devo_aggiungere_le_prenotazioni_e_le_lezioni($edificio, $inizio, $fine);
 
@@ -157,13 +158,13 @@ function get_stanze_prenotazioni()
 				}
 		}
 		ksort($points);
-		$jsona = '[["Data", "Persone"], ';
+		$jsona = '[["Data", "Persone"], ["'.date("H:i:s", $inizio).'", 0], ';
 		$integrale = 0;
 		foreach($points as $key => $val)
 		{
 			$jsona .= '["'.date("H:i:s", $key).'", '.($integrale += $val)."], ";
 		}
-		$jsona .= "], ";
+		$jsona .= '["'.date("H:i:s", $fine).'", 0]] ';
 		$jsona = str_replace(", ]", "]", $jsona);
 		//echo $jsona;
 		$s->json = $jsona;
@@ -241,7 +242,6 @@ function get_esisteutente()
 	return $esiste;
 }
 
-<<<<<<< HEAD
 function get_punti_utente()
 {
 	$email = get_nomeutente();
@@ -305,10 +305,9 @@ function get_edifici()
 }
 
 
-=======
 
 //TESTATEEEEEEEE-----------------------------------------------------------------------------
->>>>>>> origin/master
+
 function set_nomeutente()
 {
 	$_SESSION["email"] = $_POST['email'];
