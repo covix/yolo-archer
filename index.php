@@ -5,30 +5,30 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>Home</title>
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <!-- Latest compiled and minified CSS -->
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">-->
     <link rel="stylesheet" href="./css/styles.css" </head>
 
     <body>
         <div class="container">
             <div class="header">
-    <nav>
-        <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active hidden-xs"><a href="#">Add</a>
-            </li>
-            <li role="presentation" class="hidden-xs"><a href="#">Profile</a>
-            </li>
-        </ul>
+                <nav>
+                    <ul class="nav nav-pills pull-right">
+                        <li role="presentation" class="active hidden-xs"><a href="#">Add</a>
+                        </li>
+                        <li role="presentation" class="hidden-xs"><a href="#">Profile</a>
+                        </li>
+                    </ul>
 
-        <h3 class="text-muted brand" style="text-align: center">Aulapp</h3>
-    </nav>
-</div>
+                    <h3 class="text-muted brand" style="text-align: center">Aulapp</h3>
+                </nav>
+            </div>
 
             <div class="jumbotron">
                 <h1>Aulapp</h1>
@@ -75,7 +75,7 @@
             </div>
 
             <footer class="footer">
-                <p>© Brunella 2014</p>
+                <p>Brunella © Company 2014</p>
             </footer>
 
         </div>
@@ -88,19 +88,19 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                         </button>
-                        <h2 class="modal-title">Demo login</h2>
+                        <h2 class="modal-title">Login</h2>
                     </div>
-                    <form role="form">
+                    <form role="form" method="post" action="php/login.php">
                         <div class="modal-body">
                             <div class="form-group">
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Your email">
+                                <input type="email" class="form-control" id="email" placeholder="Your email">
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" disabled>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-lg btn-primary">Login</button>
+                            <button type="submit" class="btn btn-lg btn-primary">Demo Login</button>
                         </div>
                     </form>
                 </div>

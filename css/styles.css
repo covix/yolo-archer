@@ -5,6 +5,7 @@ body {
     padding-top:20px;
     padding-bottom:20px;*/
     background: url(../img/back-to-school4.jpg) no-repeat center center fixed;
+    background-size: 100% auto;
 }
 /* Everything but the jumbotron gets side spacing for mobile first views */
 
@@ -68,6 +69,10 @@ body {
 .jumbotron .btn {
     padding: 14px 24px;
     font-size: 21px;
+    width: 130px;
+}
+.search {
+    padding-bottom: 15px;
 }
 .search #btnsearch {
     float: right;

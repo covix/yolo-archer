@@ -1,10 +1,16 @@
 <?php
 
-setcookie( "name", $_POST['username'], 0, '/') or die('/ntryng');
+// include 'api.php';
 
+//set_nomeutente();
+
+//if(!get_esisteutente())
+//{
+//    crea_utente();
+//}
 header("Location: http://".$_SERVER['HTTP_HOST']."/aule.php");
-die("aiuto aiuto");
 
-echo "coviello cagna canshielloooo"
+die( "aiuto aiuto");
+echo "coviello cagna canshielloooo";
 
 ?>
