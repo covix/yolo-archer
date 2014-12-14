@@ -1,8 +1,3 @@
-<?php
-    include "php/api.php";
-    logged_or_die();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,17 +22,19 @@
                 <h2 class="text-muted brand" style="text-align: center">Aulapp</h2>
 
                 <nav class="padLeft">
-                    <button type="button" class="btn btn-default btnLeft visible-xs pull-left"><span class="glyphicon bianco glyphicon-arrow-left"></button>
-                    <button type="button" class="btn btn-default btnLeft visible-xs pull-right"><span class="glyphicon bianco glyphicon-log-out"></button>
+                    <button type="button" class="btn btn-default btnLeft visible-xs pull-left"><a href="home.php"><span class="glyphicon bianco glyphicon-home"></a>
+                    </button>
+                    <button type="button" class="btn btn-default btnLeft visible-xs pull-right"><a href="index.php"><span class="glyphicon bianco glyphicon-log-out"></a>
+                    </button>
                     <ul class="nav nav-pills pull-right">
-                        <li role="presentation" class="hidden-xs"><a href="#"><span class="glyphicon bianco glyphicon-arrow-left"></span>
-                        <p class="bianco">Indietro</p>
+                        <li role="presentation" class="hidden-xs"><a href="home.php"><span class="glyphicon bianco glyphicon-home"></span>
+                        <p class="bianco">Home</p>
                         </a>
                         </li>
 
-                        <li role="presentation" class="hidden-xs"><a href="#"><span class="glyphicon bianco glyphicon-log-out"></span><p class="bianco"> Logout</p> </a>
+                        <li role="presentation" class="hidden-xs"><a href="index.php"><span class="glyphicon bianco glyphicon-log-out"></span><p class="bianco"> Logout</p> </a>
                         </li>
-                        </ul>
+                    </ul>
 
                 </nav>
             </div>

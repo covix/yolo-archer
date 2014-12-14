@@ -211,6 +211,7 @@ body {
     padding-right: 40px;
 }
 .padLeft {
+    padding-left: 10px;
     padding-right: 10px;
 }
 .tblLikes {
