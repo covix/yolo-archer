@@ -1,7 +1,4 @@
-<?php
-    import "php/api.php";
-    logged_or_die();
-?>
+<?php include "php/api.php"; logged_or_die();  ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +40,17 @@
 
         <form class="form-inline">
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Povo" disabled>
+                <!--                <input class="form-control" type="text" placeholder="Povo" disabled>-->
+                <select class="form-control">
+                    <?php
+                        $arrrgh = get_edifici();
+                        $s = "";
+                        foreach ($arrrgh as &$value) {
+                            $s = $s.'<option value="$value">$value</option>';
+                        }
+                        echo s;
+                    ?>
+                </select>
             </div>
             <div class="form-group">
                 <div class='input-group date' id='datetimepicker1'>

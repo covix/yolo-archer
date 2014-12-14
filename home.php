@@ -1,5 +1,5 @@
 <?php
-    import "php/api.php";
+    include "php/api.php";
     logged_or_die();
 ?>
 

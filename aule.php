@@ -1,6 +1,5 @@
 <?php
     include "php/api.php";
-
     logged_or_die();
 ?>
 
@@ -40,7 +39,16 @@
 
         <form class="form-inline">
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Povo">
+               <select class="form-control">
+                    <?php
+                        $arrrgh = get_edifici();
+                        $s = "";
+                        foreach ($arrrgh as &$value) {
+                            $s = $s.'<option value="$value">$value</option>';
+                        }
+                        echo s;
+                    ?>
+                </select>
             </div>
             <div class="form-group">
                 <button type="button" class="btn btn-default" id="btnsearch">

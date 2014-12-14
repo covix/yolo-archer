@@ -1,5 +1,5 @@
 <?php
-    import "php/api.php";
+    include "php/api.php";
     logged_or_die();
 ?>
 
@@ -53,7 +53,7 @@
                 </div>
                 <hr>
                 <div class="row-marketing">
-                    <label for "niente" class="lblPunti">Punti 25</label>
+                    <label class="lblPunti">Punti 25</label>
                 </div>
 
                 <div class="row-marketing">
