@@ -34,14 +34,7 @@
 
         <form class="form-inline">
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Povo" disabled>
-            </div>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
+                <input class="form-control" type="text" placeholder="Povo">
             </div>
             <div class="form-group">
                 <button type="button" class="btn btn-default" id="btnsearch">

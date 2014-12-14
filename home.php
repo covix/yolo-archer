@@ -36,7 +36,7 @@
                 <p class="lead">Cerca dove studiare, avvisa che studierai, condivi lo stato di una stanza</p>
                 <div class="row">
                     <div class="col-lg-6 col-xs-6">
-                        <button type="button" class="btn btn-danger">Cerca</button>
+                        <a href="aule.php" role="button" class="btn btn-danger">Cerca</a>
                         <!--
                         <a href=# class="" data-toggle="modal" data-target="#loginModal">
                         </a>
@@ -44,7 +44,7 @@
                     </div>
                     <!-- /.col-lg-4 -->
                     <div class="col-lg-6 col-xs-6">
-                        <button type="button" class="btn btn-warning">Condividi</button>
+                        <a href="condividi.php" role="button" class="btn btn-warning">Condividi</a>
 
                         <!--
                         <a href=# class="" data-toggle="modal" data-target="#loginModal">
@@ -55,7 +55,7 @@
                     <!-- /.col-lg-4 -->
                     <div class="col-lg-12 col-xs-12">
                         <br>
-                        <button type="button" class="btn btn-success">Prenota</button>
+                        <a href="aule_prenota.php" role="button" class="btn btn-success">Prenota</a>
                         <!--
                         <a href=# class="" data-toggle="modal" data-target="#loginModal">
                             <img class="img-circle" src="./img/social-google.png" style="background-color: white; height: 140px;">
