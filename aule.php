@@ -17,58 +17,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-    <center>
-        <header>
-            <h1>A<span>ul</span>e</h1>
-        </header>
-
-        <div id="divdwnl">
-            <div class="separatore"></div>
-			<p>INSERISCI COMMENTO</p>
-            <form action="php/insert_commento.php" method="POST">
-                <br>
-                <input type="text" name="testo"    value="Ciao sono un commento">
-				<br>
-                <input type="text" name="persone"  value="50">
-                <br>
-				<input type="text" name="stanza"   value="A103">
-                <br>
-				<input type="text" name="edificio" value="Povo">
-                <br>
-                <input type="submit" value="login">
-            </form>
-
-			<div class="separatore"></div>
-			<p>LIKE</p>
-            <form action="php/like.php" method="POST">
-                <br>
-                <input type="text" name="email_commento" value="pipino@gmail.com">
-                <br>
-				<input type="text" name="stanza" value="A103">
-                <br>
-				<input type="text" name="edificio" value="Povo">
-				<br>
-				<input type="text" name="timestamp" value="1418489885">
-                <br>
-                <input type="submit" value="login">
-            </form>
-
-			<div class="separatore"></div>
-			<p>DISLIKE</p>
-            <form action="php/dislike.php" method="POST">
-                <br>
-                <input type="text" name="email_commento"    value="pipino@gmail.com">
-                <br>
-				<input type="text" name="stanza"   value="A103">
-                <br>
-				<input type="text" name="edificio" value="Povo">
-				<br>
-				<input type="text" name="timestamp" value="1418489885">
-                <br>
-                <input type="submit" value="login">
-            </form>
-=======
     <div class="container">
         <div class="header">
             <nav>
@@ -146,42 +94,10 @@
         <footer class="footer">
             <p>Brunella © Company 2014</p>
         </footer>
->>>>>>> origin/master
 
     </div>
 
-<<<<<<< HEAD
-			<div class="separatore"></div>
-			<p>PRENOTA</p>
-            <form action="php/insert_prenotazione.php" method="POST">
-                <br>
-				<input type="text" name="inizio" value="1418489885">
-				<br>
-				<input type="text" name="fine" value="1418489895">
-				<br>
-				<input type="text" name="persone"  value="50">
-                <br>
-				<input type="text" name="stanza"   value="A103">
-                <br>
-				<input type="text" name="edificio" value="Povo">
-                <br>
-                <input type="submit" value="login">
-            </form>
 
-			<div class="separatore"></div>
-			<p>AULE_PRENOTAZIONE</p>
-            <form action="php/get_stanze_boh.php" method="POST">
-				<br>
-				<input type="text" name="inizio" value="1418489890">
-				<br>
-				<input type="text" name="fine" value="1418489892">
-                <br>
-				<input type="text" name="edificio" value="Povo">
-				<br>
-                <input type="submit" value="login">
-            </form>
-        </div>
-=======
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js "></script>
 
@@ -198,7 +114,6 @@
                 useCurrent: true,
                 pickDate: false,
             });
->>>>>>> origin/master
 
             $(".html5Form").bootstrapValidator();
             $(".help-block").remove();
