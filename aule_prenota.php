@@ -161,24 +161,20 @@ if ( isset($_POST['inizio']))
 
                                     var options = {
                                     title: 'Aula ',
+                                    displayAnnotations: true,
                                     vAxis: {minValue: 0, maxValue : <?php echo $s->capienza ?>},
-
-                                    hAxis: {title: 'Ore',  titleTextStyle: {color: '#333'},format:'H:m MMM d, y', showTextEvery :true},
-                                        series: {
-                                            0: { color: '#0050ee' },
-                                            1: { color: '#e2431e' }
-                                          },
-
-                                            displayAnnotations: true
+                                    hAxis: {title: 'Ore',  titleTextStyle: {color: '#333'}, showTextEvery:1, format:'H:m'},
+                                    series: { 0: { color: '#0050ee' }, 1: { color: '#e2431e' } },
                                     };
 
-
-
+                                        var view = new google.visualization.DataView(data);
+    view.setColumns([0, {calc: function(dataTable, row){return ((dataTable.getValue(row, 0).getHours()<10)?"0":"")+(dataTable.getValue(row, 0).getHours())+":"+((dataTable.getValue(row, 0).getMinutes()<10)?"0":"")+(dataTable.getValue(row, 0).getMinutes())},
+                            type: "string",
+                            role: "annotation"
+                        },1,2]);
 
                                     var chart = new google.visualization.AreaChart(document.getElementById('chart_div_<?php echo $i ?>'));
-                                    chart.draw(data, options);
-
-
+                                    chart.draw(view, options);
                                     }
                                 </script>
                                 <div id='chart_div_<?php echo $i ?>' style="width:600px; height:250px;"></div>
