@@ -18,8 +18,7 @@
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/bootstrapValidator.min.css">
     <link rel="stylesheet" href="./css/bootstrap-datetimepicker.min.css">
-    <style type="text/css">
-    </style>
+    <link rel="shortcut icon" type="image/png" href="img/favicon.ico"/>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 </head>
 

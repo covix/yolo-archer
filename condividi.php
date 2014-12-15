@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/bootstrapValidator.min.css">
     <link rel="stylesheet" href="./css/bootstrap-datetimepicker.min.css">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.ico"/>
 </head>
 
 <body>
@@ -45,11 +46,12 @@
         <div>
             <form id="numericinput" class="form-horizontal" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
                 <div class=form-group>
-                    <label class="col-sm-2 control-label">Zona</label>
+                    <label class="col-sm-2 control-label">Edificio</label>
                     <div class="col-sm-5 col-md-8">
                         <select name="edificio" class=" form-control">
                             <?php
                                 $arrrgh = get_edifici();
+                                echo $arrrgh;
                                 $s = "";
                                 foreach ($arrrgh as &$value) {
                                     $s = $s.'<option value="$value">$value</option>';

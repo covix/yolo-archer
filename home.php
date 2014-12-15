@@ -19,7 +19,8 @@
     <!-- Optional theme -->
     <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">-->
     <link rel="stylesheet" href="./css/styles.css" </head>
-
+    <link rel="shortcut icon" type="image/png" href="img/favicon.ico"/>
+</head>
     <body>
         <div class="container">
             <div class="header">
