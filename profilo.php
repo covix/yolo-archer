@@ -84,7 +84,7 @@
                 </div>
 
                 <div class="row-marketing">
-                    <center><div id="chart_div" style="width: 600px; height: 250px;"></div></center>
+                    <center><div id="chart_div" style="width: 100%"></div></center>
                 </div>
 
                 <div class="row-marketing">
