@@ -340,7 +340,7 @@ function go_home_your_logged()
 {
     if (!is_logged())
     {
-        header("Location: /index.php");
+        header("Location: /home.php");
         die ("883 U Logged Bro");
     }
 }
