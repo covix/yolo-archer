@@ -108,7 +108,7 @@ if ( isset($_POST['inizio']))
                     ?>
                         <div class="room">
                             <hr>
-                            <h2><?php echo $s->nome ?> <small>Data e ora de che?</small></h2>
+                            <h2><?php echo $s->nome ?></h2>
                             <button type="button" class="btn btn-warning btn-prenota" data-toggle="modal" data-target="#prenotaModal">Prenota</button>
                             <br>
                             <?php
@@ -163,27 +163,20 @@ if ( isset($_POST['inizio']))
                                     title: 'Aula ',
                                     vAxis: {minValue: 0, maxValue : <?php echo $s->capienza ?>},
 
-                                            displayAnnotations: true,
-                                    hAxis: {title: 'Ore',  titleTextStyle: {color: '#333'}},
+                                    hAxis: {title: '{Ore}',  titleTextStyle: {color: '#333'},format:'H:m MMM d, y', showTextEvery :true},
                                         series: {
                                             0: { color: '#0050ee' },
                                             1: { color: '#e2431e' }
-                                          }
+                                          },
+
+                                            displayAnnotations: true
                                     };
 
 
 
-                                   var view = new google.visualization.DataView(data);
-                                    view.setColumns([0, {
-                                        calc: "stringify",
-                                        sourceColumn: 0,
-                                        type: "string",
-                                        role: "annotation"
-                                    }, 1, 2, {}]);
-
 
                                     var chart = new google.visualization.AreaChart(document.getElementById('chart_div_<?php echo $i ?>'));
-                                    chart.draw(view, options);
+                                    chart.draw(data, options);
 
 
                                     }
@@ -287,9 +280,9 @@ if ( isset($_POST['inizio']))
             $(".html5Form").bootstrapValidator();
             $(".help-block").remove();
 
-            $(".btn-prenota").click(function (el) {
+            $(".btn-prenota").click(function (e) {
                 $(".modal input[name=edificio]").attr('value', $('select[name=edificio]').val());
-                $(".modal input[name=stanza]").attr('value', $(el).val());
+                $(".modal input[name=stanza]").attr('value', $($(this)[0].parentElement).children('h2')[0].textContent);
             });
         });
     </script>
