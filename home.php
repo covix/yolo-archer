@@ -75,7 +75,7 @@
                 </div>
             </div>
             <div class="row text-center marketing">
-                <button type="button" class="btn btn-lg btn-primary">Visualizza il tuo profilo</button>
+                <a href="profilo.php" role="button" class="btn btn-lg btn-primary">Visualizza il tuo profilo</a>
             </div>
 
             <footer class="footer">
@@ -84,36 +84,6 @@
 
         </div>
         <!-- /.container -->
-
-
-        <div class="modal fade" id="loginModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                        </button>
-                        <h2 class="modal-title">Demo login</h2>
-                    </div>
-                    <form role="form">
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Your email">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" disabled>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-lg btn-primary">Login</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
