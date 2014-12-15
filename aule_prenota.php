@@ -164,19 +164,8 @@ if ( isset($_POST['inizio']))
                                     title: 'Aula ',
                                     displayAnnotations: true,
                                     vAxis: {minValue: 0, maxValue : <?php echo $s->capienza ?>},
-<<<<<<< HEAD
                                     hAxis: {title: 'Ore',  titleTextStyle: {color: '#333'}, showTextEvery:1, format:'H:m'},
                                     series: { 0: { color: '#0050ee' }, 1: { color: '#e2431e' } },
-=======
-
-                                    hAxis: {title: '{Ore}',  titleTextStyle: {color: '#333'},format:'H:m MMM d, y', showTextEvery :true},
-                                        series: {
-                                            0: { color: '#0050ee' },
-                                            1: { color: '#e2431e' }
-                                          },
-
-                                            displayAnnotations: true
->>>>>>> AulApp/master
                                     };
 
                                         var view = new google.visualization.DataView(data);
