@@ -57,7 +57,36 @@
                 </div>
 
                 <div class="row-marketing">
-                    <img class="img" src="./img/graph.png" style="height: 180px;">
+                    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+                    <script type="text/javascript">
+                      google.load("visualization", "1", {packages:["corechart"]});
+                      google.setOnLoadCallback(drawChart);
+                      function drawChart() {
+                        var data = google.visualization.arrayToDataTable([["Data", "Punti"]<?php
+                            $m = 0;
+                            $p = 5;
+                            $t = rand(3, 5) * rand(3, 5);
+                            for ($i = 0; $i < $t; $i++) {
+                                $m -= rand(500, 36000);
+                                $p += rand(-1, 1);
+                                if ($p < 0)
+                                    $p = -$p;
+                                echo ", [new Date(".(time() - $m)."000), ".$p."]";
+                            }
+
+                        ?>]);
+
+                        var options = {
+                          title: 'Punteggio',
+                          hAxis: {title: 'Punti',  titleTextStyle: {color: '#333'}},
+                          vAxis: {minValue: 0}
+                        };
+
+                        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                        chart.draw(data, options);
+                      }
+                    </script>
+                    <center><div id="chart_div" style="width: 600px; height: 250px;"></div></center>
                 </div>
 
                 <div class="row-marketing">
