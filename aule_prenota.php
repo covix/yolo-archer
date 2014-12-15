@@ -4,7 +4,8 @@ logged_or_die();
 
 if ( isset($_POST['inizio']))
 {
-
+    $_POST['inizio'] = strtotime($_POST['inizio']);
+    $_POST['fine'] = strtotime($_POST['fine']);
     prenota();
 }
 ?>
@@ -211,7 +212,7 @@ if ( isset($_POST['inizio']))
                     </button>
                     <h2 class="modal-title">Ci saranno anche i tuoi amici?</h2>
                 </div>
-                <form class="html5Form form-inline" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh" role="form">
+                <form method="post" action="" class="html5Form form-inline" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh" role="form">
                     <input type="hidden" name="stanza" />
                     <input type="hidden" name="edificio" />
                     <div class="modal-body">
@@ -266,14 +267,14 @@ if ( isset($_POST['inizio']))
             $('#datetimepicker2').datetimepicker({
                 useMinutes: true,
                 useCurrent: true,
-                pickDate: false,
+                pickDate: true,
                 minuteStepping: 30,
             });
 
             $('#datetimepicker3').datetimepicker({
                 useMinutes: true,
                 useCurrent: true,
-                pickDate: false,
+                pickDate: true,
                 minuteStepping: 30,
             });
 
