@@ -23,22 +23,20 @@
     <body>
         <div class="container">
             <div class="header">
-
-                <h2 class="text-muted brand" style="text-align: center">Aulapp</h2>
-
+                <h2 class="text-muted brand" style="text-align: center">AulAPP</h2>
                 <nav class="padLeft">
-                    <button type="button" class="btn btn-default btnLeft visible-xs pull-left"><span class="glyphicon bianco glyphicon-arrow-left"></button>
-                    <button type="button" class="btn btn-default btnLeft visible-xs pull-right"><span class="glyphicon bianco glyphicon-log-out"></button>
+                    <button type="button" class="btn btn-default btnLeft visible-xs pull-left"><a href="home.php"><span class="glyphicon bianco glyphicon-home"></a>
+                    </button>
+                    <button type="button" class="btn btn-default btnLeft visible-xs pull-right"><a href="php/logout.php"><span class="glyphicon bianco glyphicon-log-out"></a>
+                    </button>
                     <ul class="nav nav-pills pull-right">
-                        <li role="presentation" class="hidden-xs"><a href="#"><span class="glyphicon bianco glyphicon-arrow-left"></span>
-                        <p class="bianco">Indietro</p>
+                        <li role="presentation" class="hidden-xs"><a href="home.php"><span class="glyphicon bianco glyphicon-home"></span>
+                        <p class="bianco">Home</p>
                         </a>
                         </li>
-
-                        <li role="presentation" class="hidden-xs"><a href="#"><span class="glyphicon bianco glyphicon-log-out"></span><p class="bianco"> Logout</p> </a>
+                        <li role="presentation" class="hidden-xs"><a href="php/logout.php"><span class="glyphicon bianco glyphicon-log-out"></span><p class="bianco"> Logout</p> </a>
                         </li>
-                        </ul>
-
+                    </ul>
                 </nav>
             </div>
             <div class="center-profile">
@@ -49,7 +47,7 @@
                 </div>
 
                 <div class="row-marketing">
-                    <h3>Brunella Lorenz</h3>
+                    <h3><?php echo $_SESSION['email'] ?></h3>
                 </div>
                 <hr>
                 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -86,14 +84,14 @@
                 </div>
 
                 <div class="row-marketing">
-                    <center><div id="chart_div" style="width: 600px; height: 250px;"></div></center>
+                    <center><div id="chart_div" style="width: 100%"></div></center>
                 </div>
 
                 <div class="row-marketing">
                     <table align="center" class="tblLikes">
                         <tr>
-                            <th class="leftTh"><span class="glyphicon glyphicon-thumbs-up"></span>46</th>
-                            <th class="rightTh"><span class="glyphicon glyphicon-thumbs-up"></span>22</th>
+                            <th class="leftTh"><span class="glyphicon glyphicon-thumbs-up"></span><?php echo $t ?></th>
+                            <th class="rightTh"><span class="glyphicon glyphicon-thumbs-down"></span><?php echo $t-$p ?></th>
                         </tr>
                     </table>
 

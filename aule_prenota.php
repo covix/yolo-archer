@@ -4,7 +4,8 @@ logged_or_die();
 
 if ( isset($_POST['inizio']))
 {
-
+    $_POST['inizio'] = strtotime($_POST['inizio']);
+    $_POST['fine'] = strtotime($_POST['fine']);
     prenota();
 }
 ?>
@@ -57,7 +58,7 @@ if ( isset($_POST['inizio']))
             ?>
             <div class="row-marketing">
                 <div class="alert alert-info" role="alert">
-                    <strong>Start</strong> you research, by <strong>pressing</strong>... mmm... <strong>search!</strong>
+                    <strong>Start</strong> your search, by <strong>pressing</strong>... mmm... <strong>search!</strong>
                 </div>
             </div>
             <?php
@@ -108,7 +109,7 @@ if ( isset($_POST['inizio']))
                     ?>
                         <div class="room">
                             <hr>
-                            <h2><?php echo $s->nome ?> <small>Data e ora de che?</small></h2>
+                            <h2><?php echo $s->nome ?></h2>
                             <button type="button" class="btn btn-warning btn-prenota" data-toggle="modal" data-target="#prenotaModal">Prenota</button>
                             <br>
                             <?php
@@ -163,8 +164,19 @@ if ( isset($_POST['inizio']))
                                     title: 'Aula ',
                                     displayAnnotations: true,
                                     vAxis: {minValue: 0, maxValue : <?php echo $s->capienza ?>},
+<<<<<<< HEAD
                                     hAxis: {title: 'Ore',  titleTextStyle: {color: '#333'}, showTextEvery:1, format:'H:m'},
                                     series: { 0: { color: '#0050ee' }, 1: { color: '#e2431e' } },
+=======
+
+                                    hAxis: {title: '{Ore}',  titleTextStyle: {color: '#333'},format:'H:m MMM d, y', showTextEvery :true},
+                                        series: {
+                                            0: { color: '#0050ee' },
+                                            1: { color: '#e2431e' }
+                                          },
+
+                                            displayAnnotations: true
+>>>>>>> AulApp/master
                                     };
 
                                         var view = new google.visualization.DataView(data);
@@ -207,7 +219,7 @@ if ( isset($_POST['inizio']))
                     </button>
                     <h2 class="modal-title">Ci saranno anche i tuoi amici?</h2>
                 </div>
-                <form class="html5Form form-inline" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh" role="form">
+                <form method="post" action="" class="html5Form form-inline" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh" role="form">
                     <input type="hidden" name="stanza" />
                     <input type="hidden" name="edificio" />
                     <div class="modal-body">
@@ -262,23 +274,23 @@ if ( isset($_POST['inizio']))
             $('#datetimepicker2').datetimepicker({
                 useMinutes: true,
                 useCurrent: true,
-                pickDate: false,
+                pickDate: true,
                 minuteStepping: 30,
             });
 
             $('#datetimepicker3').datetimepicker({
                 useMinutes: true,
                 useCurrent: true,
-                pickDate: false,
+                pickDate: true,
                 minuteStepping: 30,
             });
 
             $(".html5Form").bootstrapValidator();
             $(".help-block").remove();
 
-            $(".btn-prenota").click(function (el) {
+            $(".btn-prenota").click(function (e) {
                 $(".modal input[name=edificio]").attr('value', $('select[name=edificio]').val());
-                $(".modal input[name=stanza]").attr('value', $(el).val());
+                $(".modal input[name=stanza]").attr('value', $($(this)[0].parentElement).children('h2')[0].textContent);
             });
         });
     </script>
