@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Prenota</title>
+    <title>Prenota | AulAPP</title>
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
@@ -18,8 +18,7 @@
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/bootstrapValidator.min.css">
     <link rel="stylesheet" href="./css/bootstrap-datetimepicker.min.css">
-    <style type="text/css">
-    </style>
+    <link rel="shortcut icon" type="image/png" href="img/favicon.ico"/>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 </head>
 
@@ -27,23 +26,34 @@
     <div class="container">
         <div class="header">
             <h2 class="text-muted brand" style="text-align: center">AulAPP</h2>
-
             <nav class="padLeft">
                 <button type="button" class="btn btn-default btnLeft visible-xs pull-left"><a href="home.php"><span class="glyphicon bianco glyphicon-home"></a>
                 </button>
-                <button type="button" class="btn btn-default btnLeft visible-xs pull-right"><a href="index.php"><span class="glyphicon bianco glyphicon-log-out"></a>
+                <button type="button" class="btn btn-default btnLeft visible-xs pull-right"><a href="php/logout.php"><span class="glyphicon bianco glyphicon-log-out"></a>
                 </button>
                 <ul class="nav nav-pills pull-right">
                     <li role="presentation" class="hidden-xs"><a href="home.php"><span class="glyphicon bianco glyphicon-home"></span>
                     <p class="bianco">Home</p>
                     </a>
                     </li>
-                    <li role="presentation" class="hidden-xs"><a href="index.php"><span class="glyphicon bianco glyphicon-log-out"></span><p class="bianco"> Logout</p> </a>
+                    <li role="presentation" class="hidden-xs"><a href="php/logout.php"><span class="glyphicon bianco glyphicon-log-out"></span><p class="bianco"> Logout</p> </a>
                     </li>
                 </ul>
             </nav>
         </div>
 
+        <?php
+            if (!isset ($_POST['edificio']))
+            {
+            ?>
+            <div class="row-marketing">
+                <div class="alert alert-info" role="alert">
+                    <strong>Start</strong> you research, by <strong>pressing</strong>... mmm... <strong>search!</strong>
+                </div>
+            </div>
+            <?php
+            }
+        ?>
         <form class="form-inline" method="post" action="">
             <div class="form-group">
                <select class="form-control" name="edificio">
@@ -51,6 +61,11 @@
                         $arrrgh = get_edifici();
                         $s = "";
                         foreach ($arrrgh as &$value) {
+                            $selected = "";
+                            if ( $_POST['edificio'] == $value)
+                            {
+                                $selected = "selected";
+                            }
                             $s = $s."<option value='$value'>$value</option>";
                         }
                         echo $s;

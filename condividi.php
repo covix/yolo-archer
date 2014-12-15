@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Condividi</title>
+    <title>Condividi | AulAPP</title>
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
@@ -21,24 +21,24 @@
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/bootstrapValidator.min.css">
     <link rel="stylesheet" href="./css/bootstrap-datetimepicker.min.css">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.ico"/>
 </head>
 
 <body>
     <div class="container">
         <div class="header">
             <h2 class="text-muted brand" style="text-align: center">AulAPP</h2>
-
             <nav class="padLeft">
                 <button type="button" class="btn btn-default btnLeft visible-xs pull-left"><a href="home.php"><span class="glyphicon bianco glyphicon-home"></a>
                 </button>
-                <button type="button" class="btn btn-default btnLeft visible-xs pull-right"><a href="index.php"><span class="glyphicon bianco glyphicon-log-out"></a>
+                <button type="button" class="btn btn-default btnLeft visible-xs pull-right"><a href="php/logout.php"><span class="glyphicon bianco glyphicon-log-out"></a>
                 </button>
                 <ul class="nav nav-pills pull-right">
                     <li role="presentation" class="hidden-xs"><a href="home.php"><span class="glyphicon bianco glyphicon-home"></span>
                     <p class="bianco">Home</p>
                     </a>
                     </li>
-                    <li role="presentation" class="hidden-xs"><a href="index.php"><span class="glyphicon bianco glyphicon-log-out"></span><p class="bianco"> Logout</p> </a>
+                    <li role="presentation" class="hidden-xs"><a href="php/logout.php"><span class="glyphicon bianco glyphicon-log-out"></span><p class="bianco"> Logout</p> </a>
                     </li>
                 </ul>
             </nav>
@@ -46,11 +46,12 @@
         <div>
             <form id="numericinput" class="form-horizontal" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
                 <div class=form-group>
-                    <label class="col-sm-2 control-label">Zona</label>
+                    <label class="col-sm-2 control-label">Edificio</label>
                     <div class="col-sm-5 col-md-8">
                         <select name="edificio" class=" form-control">
                             <?php
                                 $arrrgh = get_edifici();
+                                echo $arrrgh;
                                 $s = "";
                                 foreach ($arrrgh as &$value) {
                                     $s = $s.'<option value="$value">$value</option>';
