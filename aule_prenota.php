@@ -234,7 +234,7 @@
     <script src="js/bootstrap-datetimepicker.min.js "></script>
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker1 #datatimepicker2').datetimepicker({
+            $('#datetimepicker1, #datatimepicker2').datetimepicker({
                 useMinutes: false,
                 useCurrent: true,
                 pickDate: true,
