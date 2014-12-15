@@ -43,7 +43,18 @@
             </nav>
         </div>
 
-
+        <?php
+            if (!isset ($_POST['edificio']))
+            {
+            ?>
+            <div class="row-marketing">
+                <div class="alert alert-info" role="alert">
+                    <strong>Start</strong> you research, by <strong>pressing</strong>... mmm... <strong>search!</strong>
+                </div>
+            </div>
+            <?php
+            }
+        ?>
         <form class="form-inline" method="post" action="">
             <div class="form-group">
                <select class="form-control" name="edificio">
