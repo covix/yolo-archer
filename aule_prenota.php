@@ -58,7 +58,7 @@ if ( isset($_POST['inizio']))
             ?>
             <div class="row-marketing">
                 <div class="alert alert-info" role="alert">
-                    <strong>Start</strong> you research, by <strong>pressing</strong>... mmm... <strong>search!</strong>
+                    <strong>Start</strong> your search, by <strong>pressing</strong>... mmm... <strong>search!</strong>
                 </div>
             </div>
             <?php
