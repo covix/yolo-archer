@@ -202,7 +202,7 @@
 
 
     <div class="modal fade" id="prenotaModal">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
@@ -218,7 +218,14 @@
                         </div>
                         <div class="form-group">
                             <div class='input-group date' id='datetimepicker2'>
-                                <input type='text' class="form-control" name="inizio" data-date-format="" />
+                                <input type='text' class="form-control" name="inizio" data-date-format="" placeholder="Da.." />
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker3'>
+                                <input type='text' class="form-control" name="inizio" data-date-format="" placeholder="A.." />
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                             </div>
@@ -246,10 +253,24 @@
     <script src="js/bootstrap-datetimepicker.min.js "></script>
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker1 #datatimepicker2').datetimepicker({
+            $('#datetimepicker1').datetimepicker({
                 useMinutes: false,
                 useCurrent: true,
                 pickDate: true,
+            });
+
+            $('#datetimepicker2').datetimepicker({
+                useMinutes: true,
+                useCurrent: true,
+                pickDate: false,
+                minuteStepping: 30,
+            });
+
+            $('#datetimepicker3').datetimepicker({
+                useMinutes: true,
+                useCurrent: true,
+                pickDate: false,
+                minuteStepping: 30,
             });
 
             $(".html5Form").bootstrapValidator();
