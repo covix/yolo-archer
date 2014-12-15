@@ -204,7 +204,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class='input-group date' id='datetimepicker1'>
+                            <div class='input-group date' id='datetimepicker2'>
                                 <input type='text' class="form-control" name="inizio" data-date-format="" />
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                                 </span>
@@ -233,7 +233,7 @@
     <script src="js/bootstrap-datetimepicker.min.js "></script>
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker1').datetimepicker({
+            $('#datetimepicker1 #datatimepicker2').datetimepicker({
                 useMinutes: false,
                 useCurrent: true,
                 pickDate: true,
