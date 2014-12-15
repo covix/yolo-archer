@@ -23,6 +23,9 @@ class Stanza_prenotata
 	public $prenotazioni_dalle_INIZIO_alle_7 = array();
 	public $lezioni_dalle_INIZIO_alle_7 = array();
 	public $json = '';
+    public $inizio_Richiesta = 0;
+    public $fine_Richiesta = 0;
+
 }
 
 function get_stanze_libere_adesso_ma_devo_aggiungere_le_prenotazioni_e_le_lezioni($edificio, $inizio, $fine)
@@ -86,6 +89,9 @@ function get_stanze_prenotazioni()
 	//aggiungo le prenotazioni
 	foreach ($stanze as &$s)
 	{
+        $s->inizio_Richiesta = $inizio;
+        $s->fine_Richiesta = $fine;
+
 		$nome = $s->nome;
 		$query =
 		"SELECT PRENOTAZIONE.inizio AS inizio, PRENOTAZIONE.fine AS fine, PRENOTAZIONE.persone AS quante_persone
@@ -143,39 +149,20 @@ function get_stanze_prenotazioni()
 			$tempi[] = $p->fine;
 		}
 
-		$points = array();
+		$s->points = array();
 		for($i = 0; $i < count($tempi); $i++)
 		{
 			if ($tempi[$i] <= $fine && $tempi[$i] >= $inizio)
-				if(isset($points[$tempi[$i]]))
+				if(isset($s->points[$tempi[$i]]))
 				{
-					$points[$tempi[$i]] += $arr[$i];
+					$s->points[$tempi[$i]] += $arr[$i];
 				}
 				else
 				{
-					$points[$tempi[$i]] = $arr[$i];
+					$s->points[$tempi[$i]] = $arr[$i];
 				}
 		}
-		ksort($points);
-		$jsona = '[["Data", "DataS", "Persone", "Lezione"], ["'.date("H:i:s", $inizio).'", 0, 0], ';
-		$integrale = 0;
-		foreach($points as $key => $val)
-		{
-			$jsona .= '["'.date("H:i:s", $key).'", '.($integrale += $val).', 0], ';
-		}
-
-        foreach($s->lezioni_dalle_INIZIO_alle_7 as &$p)
-		{
-			$jsona .= '["'.date("H:i:s", $p->inizio-1).'", 0, 0], ';
-			$jsona .= '["'.date("H:i:s", $p->inizio).'", 0, '.$p->capienza.'], ';
-			$jsona .= '["'.date("H:i:s", $p->fine).'", 0, '.$p->capienza.'], ';
-			$jsona .= '["'.date("H:i:s", $p->fine+1).'", 0, 0], ';
-		}
-
-		$jsona .= '["'.date("H:i:s", $fine).'", 0, 0]] ';
-		$jsona = str_replace(", ]", "]", $jsona);
-		//echo $jsona;
-		$s->json = $jsona;
+		ksort($s->points);
 	}
 	$conn->close();
 
