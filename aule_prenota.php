@@ -1,4 +1,13 @@
-<?php include "php/api.php"; logged_or_die();  ?>
+<?php
+include "php/api.php";
+logged_or_die();
+
+if ( isset($_POST['inizio']))
+{
+
+    prenota();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +16,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Prenota</title>
+    <title>Prenota | AulAPP</title>
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
@@ -18,25 +27,42 @@
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/bootstrapValidator.min.css">
     <link rel="stylesheet" href="./css/bootstrap-datetimepicker.min.css">
-    <style type="text/css">
-    </style>
+    <link rel="shortcut icon" type="image/png" href="img/favicon.ico"/>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 </head>
 
 <body>
     <div class="container">
         <div class="header">
-            <nav>
+            <h2 class="text-muted brand" style="text-align: center">AulAPP</h2>
+            <nav class="padLeft">
+                <button type="button" class="btn btn-default btnLeft visible-xs pull-left"><a href="home.php"><span class="glyphicon bianco glyphicon-home"></a>
+                </button>
+                <button type="button" class="btn btn-default btnLeft visible-xs pull-right"><a href="php/logout.php"><span class="glyphicon bianco glyphicon-log-out"></a>
+                </button>
                 <ul class="nav nav-pills pull-right">
-                    <li role="presentation" class="active hidden-xs"><a href="#">Add</a>
+                    <li role="presentation" class="hidden-xs"><a href="home.php"><span class="glyphicon bianco glyphicon-home"></span>
+                    <p class="bianco">Home</p>
+                    </a>
                     </li>
-                    <li role="presentation" class="hidden-xs"><a href="#">Profile</a>
+                    <li role="presentation" class="hidden-xs"><a href="php/logout.php"><span class="glyphicon bianco glyphicon-log-out"></span><p class="bianco"> Logout</p> </a>
                     </li>
                 </ul>
-                <h3 class="text-muted brand" style="text-align: center">Aulapp</h3>
             </nav>
         </div>
 
+        <?php
+            if (!isset ($_POST['edificio']))
+            {
+            ?>
+            <div class="row-marketing">
+                <div class="alert alert-info" role="alert">
+                    <strong>Start</strong> you research, by <strong>pressing</strong>... mmm... <strong>search!</strong>
+                </div>
+            </div>
+            <?php
+            }
+        ?>
         <form class="form-inline" method="post" action="">
             <div class="form-group">
                <select class="form-control" name="edificio">
@@ -44,7 +70,12 @@
                         $arrrgh = get_edifici();
                         $s = "";
                         foreach ($arrrgh as &$value) {
-                            $s = $s."<option value='$value'>$value</option>";
+                            $selected = "";
+                            if ( $_POST['edificio'] == $value)
+                            {
+                                $selected = "selected";
+                            }
+                            $s = $s."<option value='$value' $selected>$value</option>";
                         }
                         echo $s;
                     ?>
@@ -78,7 +109,7 @@
                         <div class="room">
                             <hr>
                             <h2><?php echo $s->nome ?> <small>Data e ora de che?</small></h2>
-                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#prenotaModal">Prenota</button>
+                            <button type="button" class="btn btn-warning btn-prenota" data-toggle="modal" data-target="#prenotaModal">Prenota</button>
                             <br>
                             <?php
                             if (true) // (strlen($s->jsona) > 20)
@@ -88,20 +119,76 @@
                                 <script type="text/javascript">
                                     google.load("visualization", "1", {packages:["corechart"]});
                                     google.setOnLoadCallback(drawChart);
-                                    function drawChart() {
-                                    var data = google.visualization.arrayToDataTable(<?php echo $s->json ?>);
+                                    function drawChart()
+                                    {
+                                        var data = new google.visualization.DataTable();
+                                        data.addColumn('date','Data');
+                                        data.addColumn('number','Persone');
+                                        data.addColumn('number','Lezioni');
+
+
+                                        data.addRows([[new Date(<?php echo $s->inizio_Richiesta ?>000), 0, 0]]);
+
+                                        <?php
+                                            if (is_array($s->points))
+                                            {
+                                                $integrale = 0;
+                                                foreach($s->points as $key => $val) {
+                                        ?>
+                                                data.addRows([[new Date(<?php echo ($key-1) ?>000), <?php echo $integrale ?>, 0]]);
+                                                data.addRows([[new Date(<?php echo $key ?>000), <?php echo ($integrale += $val) ?>, 0]]);
+                                        <?php   }
+                                             } ?>
+
+
+
+                                        <?php
+                                            foreach($s->lezioni_dalle_INIZIO_alle_7 as &$p)
+                                            {
+                                        ?>
+                                                data.addRows([[new Date(<?php echo ($p->inizio-1) ?>000), 0, 0]]);
+                                                data.addRows([[new Date(<?php echo $p->inizio ?>000), 0, <?php echo $p->capienza ?>]]);
+                                                data.addRows([[new Date(<?php echo $p->fine ?>000), 0, <?php echo $p->capienza ?>]]);
+                                                data.addRows([[new Date(<?php echo ($p->fine+1) ?>000), 0, 0]]);
+
+                                        <?php
+                                            }
+                                        ?>
+
+                                        data.addRows([[new Date(<?php echo $s->fine_Richiesta ?>000), 0, 0]]);
+
+
 
                                     var options = {
-                                    title: 'Company Performance',
-                                    hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
-                                    vAxis: {minValue: 0}
+                                    title: 'Aula ',
+                                    vAxis: {minValue: 0, maxValue : <?php echo $s->capienza ?>},
+
+                                            displayAnnotations: true,
+                                    hAxis: {title: 'Ore',  titleTextStyle: {color: '#333'}},
+                                        series: {
+                                            0: { color: '#0050ee' },
+                                            1: { color: '#e2431e' }
+                                          }
                                     };
 
+
+
+                                   var view = new google.visualization.DataView(data);
+                                    view.setColumns([0, {
+                                        calc: "stringify",
+                                        sourceColumn: 0,
+                                        type: "string",
+                                        role: "annotation"
+                                    }, 1, 2, {}]);
+
+
                                     var chart = new google.visualization.AreaChart(document.getElementById('chart_div_<?php echo $i ?>'));
-                                    chart.draw(data, options);
+                                    chart.draw(view, options);
+
+
                                     }
                                 </script>
-                                <div id='chart_div_<?php echo $i ?>' style="width:300px; height:250px;"></div>
+                                <div id='chart_div_<?php echo $i ?>' style="width:600px; height:250px;"></div>
                             <?php
                             }
                             ?>
@@ -124,7 +211,7 @@
 
 
     <div class="modal fade" id="prenotaModal">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
@@ -132,15 +219,24 @@
                     <h2 class="modal-title">Ci saranno anche i tuoi amici?</h2>
                 </div>
                 <form class="html5Form form-inline" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh" role="form">
+                    <input type="hidden" name="stanza" />
+                    <input type="hidden" name="edificio" />
                     <div class="modal-body">
                         <div class="form-group">
                             <div class="inputContainer" style="display:inline-block">
-                                <input class="form-control" name="number" type="number" placeholder="Quanti sarete?" min="1" data-bv-integer-message="" />
+                                <input class="form-control" name="persone" type="number" placeholder="Quanti sarete?" min="1" data-bv-integer-message="" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class='input-group date' id='datetimepicker1'>
-                                <input type='text' class="form-control" name="inizio" data-date-format="" />
+                            <div class='input-group date' id='datetimepicker2'>
+                                <input type='text' class="form-control" name="inizio" data-date-format="" placeholder="Da.." />
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker3'>
+                                <input type='text' class="form-control" name="fine" data-date-format="" placeholder="A.." />
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                             </div>
@@ -174,8 +270,27 @@
                 pickDate: true,
             });
 
+            $('#datetimepicker2').datetimepicker({
+                useMinutes: true,
+                useCurrent: true,
+                pickDate: false,
+                minuteStepping: 30,
+            });
+
+            $('#datetimepicker3').datetimepicker({
+                useMinutes: true,
+                useCurrent: true,
+                pickDate: false,
+                minuteStepping: 30,
+            });
+
             $(".html5Form").bootstrapValidator();
             $(".help-block").remove();
+
+            $(".btn-prenota").click(function (el) {
+                $(".modal input[name=edificio]").attr('value', $('select[name=edificio]').val());
+                $(".modal input[name=stanza]").attr('value', $(el).val());
+            });
         });
     </script>
 </body>

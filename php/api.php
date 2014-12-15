@@ -21,8 +21,11 @@ class Stanza_prenotata
 	public $edificio = '';
 	public $capienza = 0;
 	public $prenotazioni_dalle_INIZIO_alle_7 = array();
-	public $eventi_dalle_INIZIO_alle_7 = array();
+	public $lezioni_dalle_INIZIO_alle_7 = array();
 	public $json = '';
+    public $inizio_Richiesta = 0;
+    public $fine_Richiesta = 0;
+
 }
 
 function get_stanze_libere_adesso_ma_devo_aggiungere_le_prenotazioni_e_le_lezioni($edificio, $inizio, $fine)
@@ -69,9 +72,8 @@ function get_stanze_prenotazioni()
 	date_default_timezone_set('Europe/Rome');
 	$edif = $_POST["edificio"];
 	$edificio = get_idedificio($edif);
-	$inizio = 0; //strtotime($_POST['timestamp']);
-
-	$fine = 99999999999; //strtotime(date("Y-m-d", $inizio)) + 19 * 3600;
+	$inizio = strtotime($_POST['inizio']);
+	$fine = strtotime(date("Y-m-d", $inizio)) + 19 * 3600;
 
 	$stanze = get_stanze_libere_adesso_ma_devo_aggiungere_le_prenotazioni_e_le_lezioni($edificio, $inizio, $fine);
 
@@ -87,6 +89,9 @@ function get_stanze_prenotazioni()
 	//aggiungo le prenotazioni
 	foreach ($stanze as &$s)
 	{
+        $s->inizio_Richiesta = $inizio;
+        $s->fine_Richiesta = $fine;
+
 		$nome = $s->nome;
 		$query =
 		"SELECT PRENOTAZIONE.inizio AS inizio, PRENOTAZIONE.fine AS fine, PRENOTAZIONE.persone AS quante_persone
@@ -144,30 +149,20 @@ function get_stanze_prenotazioni()
 			$tempi[] = $p->fine;
 		}
 
-		$points = array();
+		$s->points = array();
 		for($i = 0; $i < count($tempi); $i++)
 		{
 			if ($tempi[$i] <= $fine && $tempi[$i] >= $inizio)
-				if(isset($points[$tempi[$i]]))
+				if(isset($s->points[$tempi[$i]]))
 				{
-					$points[$tempi[$i]] += $arr[$i];
+					$s->points[$tempi[$i]] += $arr[$i];
 				}
 				else
 				{
-					$points[$tempi[$i]] = $arr[$i];
+					$s->points[$tempi[$i]] = $arr[$i];
 				}
 		}
-		ksort($points);
-		$jsona = '[["Data", "Persone"], ["'.date("H:i:s", $inizio).'", 0], ';
-		$integrale = 0;
-		foreach($points as $key => $val)
-		{
-			$jsona .= '["'.date("H:i:s", $key).'", '.($integrale += $val)."], ";
-		}
-		$jsona .= '["'.date("H:i:s", $fine).'", 0]] ';
-		$jsona = str_replace(", ]", "]", $jsona);
-		//echo $jsona;
-		$s->json = $jsona;
+		ksort($s->points);
 	}
 	$conn->close();
 
@@ -304,6 +299,32 @@ function get_edifici()
 	return $edifici;
 }
 
+function get_stanze_all()
+{
+    $servername = "fdb13.atspace.me";
+	$username = "1762595_maindb";
+	$password = "Ciao1234";
+	$dbname = "1762595_maindb";
+
+    $edificio = $_POST['edificio'];
+
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
+	$query =   "SELECT STANZA.nome FROM STANZA, EDIFICIO
+                WHERE  STANZA.id_edificio = EDIFICIO.id_edificio
+                    AND EDIFICIO.nome_corto = '$edificio'";
+	$aule = array();
+	$result = $conn->query($query);
+	if ($result->num_rows > 0)
+	{
+		while($row = $result->fetch_assoc())
+		{
+			$aule[] = $row["nome"];
+		}
+	}
+	$conn->close();
+	return $aule;
+}
 
 
 //TESTATEEEEEEEE-----------------------------------------------------------------------------
@@ -328,7 +349,14 @@ function logged_or_die()
         die ("702 Not logged");
     }
 }
-
+function go_home_your_logged()
+{
+    if (is_logged())
+    {
+        header("Location: /home.php");
+        die ("883 U Logged Bro");
+    }
+}
 
 
 function exec_non_query($query)
@@ -374,8 +402,10 @@ function fai_commento()
 	$edificio = $_POST["edificio"];
 	$id_edificio = get_idedificio($edificio);
 	$timestamp = time();
+    $_POST["timestamp"] = $timestamp;
 
 	$query =  "INSERT INTO COMMENTO VALUES($id_edificio, '$nome_stanza', '$email', $timestamp, '$testo', $persone)";
+    Im_neutral_and_i_know_it();
 	exec_non_query($query);
 }
 function crea_utente()
@@ -397,6 +427,19 @@ function Im_like_and_i_know_it()
 	$timestamp = $_POST["timestamp"];
 
 	$query =  "INSERT INTO VOTO VALUES($id_edificio, '$nomestanza', '$email_commento', $timestamp, '$email', 1)";
+	//echo $query;
+	exec_non_query($query);
+}
+function Im_neutral_and_i_know_it()
+{
+	$edificio = $_POST["edificio"];
+	$id_edificio = get_idedificio($edificio);
+	$email = get_nomeutente();
+	$email_commento = get_nomeutente();
+	$nomestanza = $_POST["stanza"];
+	$timestamp = $_POST["timestamp"];
+
+	$query =  "INSERT INTO VOTO VALUES($id_edificio, '$nomestanza', '$email_commento', $timestamp, '$email', 0)";
 	//echo $query;
 	exec_non_query($query);
 }

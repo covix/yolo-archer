@@ -1,6 +1,11 @@
 <?php
     include "php/api.php";
     logged_or_die();
+
+    if ( isset ($_POST['persone']))
+    {
+        fai_commento();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +15,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Condividi</title>
+    <title>Condividi | AulAPP</title>
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
@@ -21,68 +26,91 @@
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/bootstrapValidator.min.css">
     <link rel="stylesheet" href="./css/bootstrap-datetimepicker.min.css">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.ico"/>
 </head>
 
 <body>
     <div class="container">
         <div class="header">
-            <nav>
+            <h2 class="text-muted brand" style="text-align: center">AulAPP</h2>
+            <nav class="padLeft">
+                <button type="button" class="btn btn-default btnLeft visible-xs pull-left"><a href="home.php"><span class="glyphicon bianco glyphicon-home"></a>
+                </button>
+                <button type="button" class="btn btn-default btnLeft visible-xs pull-right"><a href="php/logout.php"><span class="glyphicon bianco glyphicon-log-out"></a>
+                </button>
                 <ul class="nav nav-pills pull-right">
-                    <li role="presentation" class="active hidden-xs"><a href="#">Add</a>
+                    <li role="presentation" class="hidden-xs"><a href="home.php"><span class="glyphicon bianco glyphicon-home"></span>
+                    <p class="bianco">Home</p>
+                    </a>
                     </li>
-                    <li role="presentation" class="hidden-xs"><a href="#">Profile</a>
+                    <li role="presentation" class="hidden-xs"><a href="php/logout.php"><span class="glyphicon bianco glyphicon-log-out"></span><p class="bianco"> Logout</p> </a>
                     </li>
                 </ul>
-
-                <h3 class="text-muted brand" style="text-align: center">Aulapp</h3>
             </nav>
         </div>
         <div>
-            <form id="numericinput" class="form-horizontal" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+            <form class="form-horizontal" method="post" action="">
                 <div class=form-group>
-                    <label class="col-sm-2 control-label">Zona</label>
+                    <label class="col-sm-2 control-label">Edificio</label>
                     <div class="col-sm-5 col-md-8">
-                        <select class=" form-control">
-                            <option value="povo1">Povo 1</option>
-                            <option value="povo2">Povo 2</option>
-                        </select>
-                    </div>
-                </div>
-                <div class=form-group>
-                    <label class="col-sm-2 control-label">Aula</label>
-                    <div class="col-sm-5 col-md-8">
-                        <select class="form-control">
-
+                        <select name="edificio" class="form-control" onchange="this.form.submit()">
+                            <option value="" selected disabled>Please select an option...</option>
                             <?php
                                 $arrrgh = get_edifici();
                                 $s = "";
-                                foreach ($arrrgh as &$value) {
-                                    $s = $s.'<option value="$value">$value</option>';
+                                foreach ($arrrgh as &$value)
+                                {
+                                    $selected = "";
+                                    if ( $_POST['edificio'] == $value)
+                                    {
+                                        $selected = "selected";
+                                    }
+                                    $s = $s."<option value='$value' $selected>$value</option>";
                                 }
-                                echo s;
+                                echo $s;
                             ?>
                         </select>
                     </div>
                 </div>
+            </form>
+            <form method="post" action="" id="numericinput" class="form-horizontal" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+                <?php
+                    if (isset ($_POST['edificio']))
+                    {
+                    ?>
+                        <input type='hidden' value='<?php echo $_POST['edificio']; ?>' name='edificio' />
+                    <?php
+                    }
+                ?>
                 <div class=form-group>
                     <label class="col-sm-2 control-label">Aula</label>
                     <div class="col-sm-5 col-md-8">
-                        <select class="form-control">
-                            <option value="a101">A101</option>
-                            <option value="a102">A102</option>
+                        <select class="form-control" name=stanza>
+                            <?php
+                                if (isset ($_POST['edificio']))
+                                {
+                                    $arrrgh = get_stanze_all();
+                                    $edificio = $_POST['edificio'];
+                                    $s = "";
+                                    foreach ($arrrgh as &$value) {
+                                        $s = $s."<option value='$value'>$value</option>";
+                                    }
+                                    echo $s;
+                                }
+                            ?>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label ">Number of</label>
+                    <label class="col-sm-2 control-label">Number of</label>
                     <div class="col-sm-5 col-md-8 inputContainer">
-                        <input class="form-control" name="number" type="number" min="0" placeholder="People in the room" data-bv-integer-message="The value is not an integer" />
+                        <input class="form-control" name="persone" type="number" min="0" placeholder="People in the room" data-bv-integer-message="The value is not an integer" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Notes</label>
                     <div class="col-sm-5 col-md-8">
-                        <textarea class="form-control" rows="3"></textarea>
+                        <textarea class="form-control" name=testo rows="3"></textarea>
                     </div>
                 </div>
                 <div class="form-group">

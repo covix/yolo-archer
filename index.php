@@ -1,3 +1,8 @@
+<?php
+    include "php/api.php";
+    go_home_your_logged();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home</title>
+    <title>AulAPP| AulAPP</title>
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
@@ -14,24 +19,16 @@
     <!-- Optional theme -->
     <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">-->
     <link rel="stylesheet" href="./css/styles.css" </head>
+    <link rel="shortcut icon" type="image/png" href="img/favicon.ico"/>
 
     <body>
         <div class="container">
             <div class="header">
-                <nav>
-                    <ul class="nav nav-pills pull-right">
-                        <li role="presentation" class="active hidden-xs"><a href="#">Add</a>
-                        </li>
-                        <li role="presentation" class="hidden-xs"><a href="#">Profile</a>
-                        </li>
-                    </ul>
-
-                    <h3 class="text-muted brand" style="text-align: center">Aulapp</h3>
-                </nav>
+                <h2 class="text-muted brand" style="text-align: center">AulAPP</h2>
             </div>
 
             <div class="jumbotron">
-                <h1>Aulapp</h1>
+                <h1>AulAPP</h1>
                 <p class="lead">L'app che ti aiuta a studiare da solo o in compagnia</p>
                 <div class="row">
                     <div class="col-lg-4 col-xs-4">
