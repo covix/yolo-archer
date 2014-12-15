@@ -113,12 +113,12 @@
                                     function drawChart()
                                     {
                                         var data = new google.visualization.DataTable();
-                                        data.addColumn({ type: 'date', id: 'Data' });
-                                        data.addColumn({ type: 'number', id: 'Persone' });
-                                        data.addColumn({ type: 'number', id: 'Lezioni' });
+                                        data.addColumn('date','Data');
+                                        data.addColumn('number','Persone');
+                                        data.addColumn('number','Lezioni');
 
 
-                                        data.addRows([[new Date(<?php echo $s->inizio_Richiesta ?>), 0, 0]]);
+                                        data.addRows([[new Date(<?php echo $s->inizio_Richiesta ?>000), 0, 0]]);
 
                                         <?php
                                             if (is_array($s->points))
@@ -126,7 +126,8 @@
                                                 $integrale = 0;
                                                 foreach($s->points as $key => $val) {
                                         ?>
-                                                data.addRows([[new Date(<?php echo $key ?>), <?php echo ($integrale += $val) ?>, 0]]);
+                                                data.addRows([[new Date(<?php echo ($key-1) ?>000), <?php echo $integrale ?>, 0]]);
+                                                data.addRows([[new Date(<?php echo $key ?>000), <?php echo ($integrale += $val) ?>, 0]]);
                                         <?php   }
                                              } ?>
 
@@ -136,16 +137,16 @@
                                             foreach($s->lezioni_dalle_INIZIO_alle_7 as &$p)
                                             {
                                         ?>
-                                                data.addRows([[new Date(<?php echo ($p->inizio-1) ?>), 0, 0]]);
-                                                data.addRows([[new Date(<?php echo $p->inizio ?>), 0, <?php echo $p->capienza ?>]]);
-                                                data.addRows([[new Date(<?php echo $p->fine ?>), 0, <?php echo $p->capienza ?>]]);
-                                                data.addRows([[new Date(<?php echo ($p->fine+1) ?>), 0, 0]]);
+                                                data.addRows([[new Date(<?php echo ($p->inizio-1) ?>000), 0, 0]]);
+                                                data.addRows([[new Date(<?php echo $p->inizio ?>000), 0, <?php echo $p->capienza ?>]]);
+                                                data.addRows([[new Date(<?php echo $p->fine ?>000), 0, <?php echo $p->capienza ?>]]);
+                                                data.addRows([[new Date(<?php echo ($p->fine+1) ?>000), 0, 0]]);
 
                                         <?php
                                             }
                                         ?>
 
-                                        data.addRows([[new Date(<?php echo $s->fine_Richiesta ?>), 0, 0]]);
+                                        data.addRows([[new Date(<?php echo $s->fine_Richiesta ?>000), 0, 0]]);
 
 
 
@@ -157,11 +158,11 @@
 
 
                                     var dataView = new google.visualization.DataView(data);
-                                    dataView.setColumns([{calc: function(data, row) { return data.getFormattedValue(row, 0); }, type:'string'}, 1]);
+                                    dataView.setColumns([{calc: function(data, row) { return data.getFormattedValue(row, 0); }, type:'string'}, 0]);
 
 
                                     var chart = new google.visualization.AreaChart(document.getElementById('chart_div_<?php echo $i ?>'));
-                                    chart.draw(dataView, options);
+                                    chart.draw(data, options);
 
 
                                     }
