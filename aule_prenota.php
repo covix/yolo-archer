@@ -85,7 +85,7 @@ if ( isset($_POST['inizio']))
             </div>
             <div class="form-group">
                 <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" name="inizio" data-date-format="" />
+                    <input type='text' class="form-control" name="inizio_RICERCA" data-date-format="" />
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>

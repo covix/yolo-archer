@@ -70,10 +70,10 @@ function get_stanze_libere_adesso_ma_devo_aggiungere_le_prenotazioni_e_le_lezion
 function get_stanze_prenotazioni()
 {
 	date_default_timezone_set('Europe/Rome');
+
+	$inizio = strtotime($_POST['inizio_RICERCA']);
 	$edif = $_POST["edificio"];
 	$edificio = get_idedificio($edif);
-    echo "cioaocasinc".$_POST['inizio_RICERCA'];
-	$inizio = strtotime($_POST['inizio_RICERCA']);
 	$fine = strtotime(date("Y-m-d", $inizio)) + 19 * 3600;
 
 	$stanze = get_stanze_libere_adesso_ma_devo_aggiungere_le_prenotazioni_e_le_lezioni($edificio, $inizio, $fine);
