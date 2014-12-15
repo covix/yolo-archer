@@ -47,7 +47,7 @@
             ?>
             <div class="row-marketing">
                 <div class="alert alert-info" role="alert">
-                    Start you research, by pressing the button.. search!
+                    <strong>Start</strong> you research, by <strong>pressing</strong>... mmm... <strong>search!</strong>
                 </div>
             </div>
             <?php
