@@ -37,7 +37,7 @@
             </div>
 
             <div class="jumbotron">
-                <h1>Aulapp</h1>
+                <h1>AulAPP</h1>
                 <p class="lead">L'app che ti aiuta a studiare da solo o in compagnia</p>
                 <div class="row">
                     <div class="col-lg-4 col-xs-4">
