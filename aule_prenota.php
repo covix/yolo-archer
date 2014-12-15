@@ -62,6 +62,11 @@
                         $arrrgh = get_edifici();
                         $s = "";
                         foreach ($arrrgh as &$value) {
+                            $selected = "";
+                            if ( $_POST['edificio'] == $value)
+                            {
+                                $selected = "selected";
+                            }
                             $s = $s."<option value='$value'>$value</option>";
                         }
                         echo $s;
