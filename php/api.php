@@ -336,7 +336,14 @@ function logged_or_die()
         die ("702 Not logged");
     }
 }
-
+function go_home_your_logged()
+{
+    if (is_logged())
+    {
+        header("Location: /home.php");
+        die ("883 U Logged Bro");
+    }
+}
 
 
 function exec_non_query($query)

@@ -14,13 +14,12 @@
     <!-- Latest compiled and minified CSS -->
     <!-- Optional theme -->
     <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">-->
-    <link rel="stylesheet" href="./styles/styles.css" </head>
+    <link rel="stylesheet" href="./css/styles.css" </head>
 
     <body>
         <div class="container">
             <div class="header">
-
-                <h2 class="text-muted brand" style="text-align: center">Aulapp</h2>
+                <h2 class="text-muted brand" style="text-align: center">AulAPP</h2>
 
                 <nav class="padLeft">
                     <button type="button" class="btn btn-default btnLeft visible-xs pull-left"><a href="home.php"><span class="glyphicon bianco glyphicon-home"></a>
@@ -32,11 +31,9 @@
                         <p class="bianco">Home</p>
                         </a>
                         </li>
-
                         <li role="presentation" class="hidden-xs"><a href="index.php"><span class="glyphicon bianco glyphicon-log-out"></span><p class="bianco"> Logout</p> </a>
                         </li>
                     </ul>
-
                 </nav>
             </div>
             <div class="center-profile">
