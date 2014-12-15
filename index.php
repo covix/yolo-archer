@@ -1,3 +1,8 @@
+<?php
+    include "php/api.php";
+    go_home_your_logged();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

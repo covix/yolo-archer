@@ -338,7 +338,7 @@ function logged_or_die()
 }
 function go_home_your_logged()
 {
-    if (!is_logged())
+    if (is_logged())
     {
         header("Location: /home.php");
         die ("883 U Logged Bro");
