@@ -157,8 +157,7 @@
                                     };
 
 
-                                    var dataView = new google.visualization.DataView(data);
-                                    dataView.setColumns([{calc: function(data, row) { return data.getFormattedValue(row, 0); }, type:'string'}, 0]);
+
 
 
                                     var chart = new google.visualization.AreaChart(document.getElementById('chart_div_<?php echo $i ?>'));
