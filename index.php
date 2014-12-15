@@ -18,15 +18,21 @@
     <body>
         <div class="container">
             <div class="header">
-                <nav>
+                <h2 class="text-muted brand" style="text-align: center">AulAPP</h2>
+
+                <nav class="padLeft">
+                    <button type="button" class="btn btn-default btnLeft visible-xs pull-left"><a href="home.php"><span class="glyphicon bianco glyphicon-home"></a>
+                    </button>
+                    <button type="button" class="btn btn-default btnLeft visible-xs pull-right"><a href="index.php"><span class="glyphicon bianco glyphicon-log-out"></a>
+                    </button>
                     <ul class="nav nav-pills pull-right">
-                        <li role="presentation" class="active hidden-xs"><a href="#">Add</a>
+                        <li role="presentation" class="hidden-xs"><a href="home.php"><span class="glyphicon bianco glyphicon-home"></span>
+                        <p class="bianco">Home</p>
+                        </a>
                         </li>
-                        <li role="presentation" class="hidden-xs"><a href="#">Profile</a>
+                        <li role="presentation" class="hidden-xs"><a href="index.php"><span class="glyphicon bianco glyphicon-log-out"></span><p class="bianco"> Logout</p> </a>
                         </li>
                     </ul>
-
-                    <h3 class="text-muted brand" style="text-align: center">Aulapp</h3>
                 </nav>
             </div>
 

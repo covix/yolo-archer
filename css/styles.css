@@ -9,14 +9,13 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-
 }
 /* Everything but the jumbotron gets side spacing for mobile first views */
 
+.container,
 .header,
 .marketing,
-.footer,
-.container {
+.footer {
     padding-right: 15px;
     padding-left: 15px;
 }
@@ -29,6 +28,9 @@ body {
     border-bottom: 1px solid #e5e5e5;
     padding-top: 15px;
     min-height: 75px;
+    background-color: #3d3c3a;
+    margin-left: -15px;
+    margin-right: -15px;
 }
 .header .brand {
     position: absolute;
@@ -39,11 +41,12 @@ body {
 }
 /* Make the masthead heading the same height as the navigation */
 
-.header h3 {
+.header h2 {
     padding-bottom: 19px;
     margin-top: 0;
     margin-bottom: 0;
     line-height: 40px;
+    color: white;
 }
 /* Custom page footer */
 
@@ -185,4 +188,53 @@ body {
 .modal-footer {
     padding-left: 40px;
     padding-right: 40px;
+}
+.bianco {
+    color: #42C0FB;
+    text-decoration-color: #42C0FB;
+    display: inline;
+}
+.btnLeft {
+    background-color: #3d3c3a;
+    height: 45px;
+    width: 45px;
+}
+.lblPunti {
+    padding: 10px;
+    text-align: center;
+    border-style: outset;
+    margin-top: 40px;
+    width: 75px;
+}
+.padLeft {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.tblLikes {
+    border-top-style: outset;
+    border-left-style: outset;
+    border-right-style: outset;
+    margin-top: 20px;
+    text-align: center;
+}
+.leftTh {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: green;
+    text-decoration-color: green;
+}
+.rightTh {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: red;
+    text-decoration-color: red;
+}
+.center-profile {
+    border-color: transparent;
+    margin-top: 30px;
+    text-align: center;
 }
