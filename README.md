@@ -7,3 +7,6 @@ Mettendo la mia roba del css dentro a css/styles.css sgorillava abba quindi ho m
 immagine profilo intercambiabile?
 
 chiedere ai backendtisti se dobbiamo mettere "valido per"
+
+Stiamo lavorando per voi
+=============
