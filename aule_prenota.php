@@ -95,32 +95,42 @@
                                 <script type="text/javascript">
                                     google.load("visualization", "1", {packages:["corechart"]});
                                     google.setOnLoadCallback(drawChart);
-                                    function drawChart() {
-                                    var data = google.visualization.arrayToDataTable(<?php echo $s->json ?>);
                                     function drawChart()
                                     {
-                                        var data;
+                                        var data = new google.visualization.DataTable();
                                         data.addColumn('date', 'Data');
                                         data.addColumn('number', 'Persone');
                                         data.addColumn('number', 'Lezione');
 
-                                        dataTable.addRows([new Date(<?php echo $s->inizio ?>), 0, 0]);
+
+                                        data.addRows([new Date(<?php echo $s->inizio ?>), 0, 0]);
+
+                                        <?php
+                                            if (is_array($s->points))
+                                            {
+                                                $integrale = 0;
+                                                foreach($s->points as $key => $val) {
+                                        ?>
+                                                data.addRows([new Date(<?php echo $key ?>), <?php echo ($integrale += $val) ?>, 0]);
+                                        <?php   }
+                                             } ?>
+
 
 
                                         <?php
                                             foreach($s->lezioni_dalle_INIZIO_alle_7 as &$p)
                                             {
                                         ?>
-                                                dataTable.addRows([new Date(<?php echo ($p->inizio-1) ?>), 0, 0]);
-                                                dataTable.addRows([new Date(<?php echo $p->inizio ?>), 0, <?php echo $p->capienza ?>]);
-                                                dataTable.addRows([new Date(<?php echo $p->fine ?>), 0, <?php echo $p->capienza ?>]);
-                                                dataTable.addRows([new Date(<?php echo ($p->fine+1) ?>), 0, 0]);
+                                                data.addRows([new Date(<?php echo ($p->inizio-1) ?>), 0, 0]);
+                                                data.addRows([new Date(<?php echo $p->inizio ?>), 0, <?php echo $p->capienza ?>]);
+                                                data.addRows([new Date(<?php echo $p->fine ?>), 0, <?php echo $p->capienza ?>]);
+                                                data.addRows([new Date(<?php echo ($p->fine+1) ?>), 0, 0]);
 
                                         <?php
                                             }
                                         ?>
 
-                                        dataTable.addRows([new Date(<?php echo $s->fine ?>), 0, 0]);
+                                        data.addRows([new Date(<?php echo $s->fine ?>), 0, 0]);
 
 
 
