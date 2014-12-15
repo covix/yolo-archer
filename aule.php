@@ -91,7 +91,6 @@
                     $dislike = 0;
                     $quantepersone = 0;
                     $time = "N/A";
-
                     if (sizeof($value->commenti) > 0)
                     {
                         $testo = $value->commenti[0]->testo;
