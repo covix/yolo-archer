@@ -163,7 +163,7 @@ if ( isset($_POST['inizio']))
                                     title: 'Aula ',
                                     vAxis: {minValue: 0, maxValue : <?php echo $s->capienza ?>},
 
-                                    hAxis: {title: 'Ore',  titleTextStyle: {color: '#333'},format:'H:m MMM d, y', showTextEvery :true},
+                                    hAxis: {title: '{Ore}',  titleTextStyle: {color: '#333'},format:'H:m MMM d, y', showTextEvery :true},
                                         series: {
                                             0: { color: '#0050ee' },
                                             1: { color: '#e2431e' }
