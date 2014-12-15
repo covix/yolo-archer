@@ -1,4 +1,13 @@
-<?php include "php/api.php"; logged_or_die();  ?>
+<?php
+include "php/api.php";
+logged_or_die();
+
+if ( isset($_POST['inizio']))
+{
+
+    prenota();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -100,7 +109,7 @@
                         <div class="room">
                             <hr>
                             <h2><?php echo $s->nome ?> <small>Data e ora de che?</small></h2>
-                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#prenotaModal">Prenota</button>
+                            <button type="button" class="btn btn-warning btn-prenota" data-toggle="modal" data-target="#prenotaModal">Prenota</button>
                             <br>
                             <?php
                             if (true) // (strlen($s->jsona) > 20)
@@ -197,10 +206,12 @@
                     <h2 class="modal-title">Ci saranno anche i tuoi amici?</h2>
                 </div>
                 <form class="html5Form form-inline" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh" role="form">
+                    <input type="hidden" name="stanza" />
+                    <input type="hidden" name="edificio" />
                     <div class="modal-body">
                         <div class="form-group">
                             <div class="inputContainer" style="display:inline-block">
-                                <input class="form-control" name="number" type="number" placeholder="Quanti sarete?" min="1" data-bv-integer-message="" />
+                                <input class="form-control" name="persone" type="number" placeholder="Quanti sarete?" min="1" data-bv-integer-message="" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -212,7 +223,7 @@
                         </div>
                         <div class="form-group">
                             <div class='input-group date' id='datetimepicker3'>
-                                <input type='text' class="form-control" name="inizio" data-date-format="" placeholder="A.." />
+                                <input type='text' class="form-control" name="fine" data-date-format="" placeholder="A.." />
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                             </div>
@@ -262,6 +273,11 @@
 
             $(".html5Form").bootstrapValidator();
             $(".help-block").remove();
+
+            $(".btn-prenota").click(function (el) {
+                $(".modal input[name=edificio]").attr('value', $('select[name=edificio]').val());
+                $(".modal input[name=stanza]").attr('value', $(el).val());
+            });
         });
     </script>
 </body>
