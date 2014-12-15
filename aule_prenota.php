@@ -160,17 +160,30 @@ if ( isset($_POST['inizio']))
 
 
                                     var options = {
-                                    title: 'Company Performance',
+                                    title: 'Aula ',
                                     vAxis: {minValue: 0, maxValue : <?php echo $s->capienza ?>},
-                                    isStacked: true,
+
+                                            displayAnnotations: true,
+                                    hAxis: {title: 'Ore',  titleTextStyle: {color: '#333'}},
+                                        series: {
+                                            0: { color: '#0050ee' },
+                                            1: { color: '#e2431e' }
+                                          }
                                     };
 
 
 
+                                   var view = new google.visualization.DataView(data);
+                                    view.setColumns([0, {
+                                        calc: "stringify",
+                                        sourceColumn: 0,
+                                        type: "string",
+                                        role: "annotation"
+                                    }, 1, 2, {}]);
 
 
                                     var chart = new google.visualization.AreaChart(document.getElementById('chart_div_<?php echo $i ?>'));
-                                    chart.draw(data, options);
+                                    chart.draw(view, options);
 
 
                                     }
