@@ -52,12 +52,7 @@
                     <h3>Brunella Lorenz</h3>
                 </div>
                 <hr>
-                <div class="row-marketing">
-                    <label class="lblPunti">Punti 25</label>
-                </div>
-
-                <div class="row-marketing">
-                    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+                <script type="text/javascript" src="https://www.google.com/jsapi"></script>
                     <script type="text/javascript">
                       google.load("visualization", "1", {packages:["corechart"]});
                       google.setOnLoadCallback(drawChart);
@@ -86,6 +81,11 @@
                         chart.draw(data, options);
                       }
                     </script>
+                <div class="row-marketing">
+                    <label class="lblPunti">Punti <?php echo $p ?></label>
+                </div>
+
+                <div class="row-marketing">
                     <center><div id="chart_div" style="width: 600px; height: 250px;"></div></center>
                 </div>
 
