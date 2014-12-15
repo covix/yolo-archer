@@ -369,7 +369,7 @@ function exec_non_query($query)
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
 	if(!$conn->query($query))
-		echo "aaargh";
+		echo "";
 	$conn->close();
 }
 function get_idedificio($nome_corto_edificio)
