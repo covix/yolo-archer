@@ -90,8 +90,8 @@
                 <div class="row-marketing">
                     <table align="center" class="tblLikes">
                         <tr>
-                            <th class="leftTh"><span class="glyphicon glyphicon-thumbs-up"></span>46</th>
-                            <th class="rightTh"><span class="glyphicon glyphicon-thumbs-up"></span>22</th>
+                            <th class="leftTh"><span class="glyphicon glyphicon-thumbs-up"></span><?php echo $t ?></th>
+                            <th class="rightTh"><span class="glyphicon glyphicon-thumbs-down"></span><?php echo $t-$p ?></th>
                         </tr>
                     </table>
 
