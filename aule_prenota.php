@@ -2,10 +2,16 @@
 include "php/api.php";
 logged_or_die();
 
-if ( isset($_POST['inizio']))
+if ( isset($_POST['persone']))
 {
     $_POST['inizio'] = strtotime($_POST['inizio']);
     $_POST['fine'] = strtotime($_POST['fine']);
+//
+//    echo $_POST["persone"];
+//	echo $_POST["stanza"];
+//	echo $_POST["edificio"];
+//	echo $_POST["inizio"];
+//	echo $_POST["fine"];
 
     prenota();
 }
