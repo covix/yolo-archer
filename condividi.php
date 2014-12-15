@@ -1,6 +1,11 @@
 <?php
     include "php/api.php";
     logged_or_die();
+
+    if ( isset ($_POST['persone']))
+    {
+        fai_commento();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -68,16 +73,24 @@
                     </div>
                 </div>
             </form>
-            <form id="numericinput" class="form-horizontal" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+            <form method="post" action="" id="numericinput" class="form-horizontal" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+                <?php
+                    if (isset ($_POST['edificio']))
+                    {
+                    ?>
+                        <input type='hidden' value='<?php echo $_POST['edificio']; ?>' name='edificio' />
+                    <?php
+                    }
+                ?>
                 <div class=form-group>
                     <label class="col-sm-2 control-label">Aula</label>
                     <div class="col-sm-5 col-md-8">
-                        <select class="form-control">
+                        <select class="form-control" name=stanza>
                             <?php
                                 if (isset ($_POST['edificio']))
                                 {
                                     $arrrgh = get_stanze_all();
-                                    echo sizeof($arrrgh);
+                                    $edificio = $_POST['edificio'];
                                     $s = "";
                                     foreach ($arrrgh as &$value) {
                                         $s = $s."<option value='$value'>$value</option>";
@@ -89,15 +102,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label ">Number of</label>
+                    <label class="col-sm-2 control-label">Number of</label>
                     <div class="col-sm-5 col-md-8 inputContainer">
-                        <input class="form-control" name="number" type="number" min="0" placeholder="People in the room" data-bv-integer-message="The value is not an integer" />
+                        <input class="form-control" name="persone" type="number" min="0" placeholder="People in the room" data-bv-integer-message="The value is not an integer" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Notes</label>
                     <div class="col-sm-5 col-md-8">
-                        <textarea class="form-control" rows="3"></textarea>
+                        <textarea class="form-control" name=testo rows="3"></textarea>
                     </div>
                 </div>
                 <div class="form-group">

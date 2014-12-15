@@ -402,8 +402,10 @@ function fai_commento()
 	$edificio = $_POST["edificio"];
 	$id_edificio = get_idedificio($edificio);
 	$timestamp = time();
+    $_POST["timestamp"] = $timestamp;
 
 	$query =  "INSERT INTO COMMENTO VALUES($id_edificio, '$nome_stanza', '$email', $timestamp, '$testo', $persone)";
+    Im_neutral_and_i_know_it();
 	exec_non_query($query);
 }
 function crea_utente()
@@ -425,6 +427,19 @@ function Im_like_and_i_know_it()
 	$timestamp = $_POST["timestamp"];
 
 	$query =  "INSERT INTO VOTO VALUES($id_edificio, '$nomestanza', '$email_commento', $timestamp, '$email', 1)";
+	//echo $query;
+	exec_non_query($query);
+}
+function Im_neutral_and_i_know_it()
+{
+	$edificio = $_POST["edificio"];
+	$id_edificio = get_idedificio($edificio);
+	$email = get_nomeutente();
+	$email_commento = get_nomeutente();
+	$nomestanza = $_POST["stanza"];
+	$timestamp = $_POST["timestamp"];
+
+	$query =  "INSERT INTO VOTO VALUES($id_edificio, '$nomestanza', '$email_commento', $timestamp, '$email', 0)";
 	//echo $query;
 	exec_non_query($query);
 }
