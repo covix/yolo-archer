@@ -163,27 +163,20 @@ if ( isset($_POST['inizio']))
                                     title: 'Aula ',
                                     vAxis: {minValue: 0, maxValue : <?php echo $s->capienza ?>},
 
-                                            displayAnnotations: true,
-                                    hAxis: {title: 'Ore',  titleTextStyle: {color: '#333'}},
+                                    hAxis: {title: 'Ore',  titleTextStyle: {color: '#333'},format:'H:m MMM d, y', showTextEvery :true},
                                         series: {
                                             0: { color: '#0050ee' },
                                             1: { color: '#e2431e' }
-                                          }
+                                          },
+
+                                            displayAnnotations: true
                                     };
 
 
 
-                                   var view = new google.visualization.DataView(data);
-                                    view.setColumns([0, {
-                                        calc: "stringify",
-                                        sourceColumn: 0,
-                                        type: "string",
-                                        role: "annotation"
-                                    }, 1, 2, {}]);
-
 
                                     var chart = new google.visualization.AreaChart(document.getElementById('chart_div_<?php echo $i ?>'));
-                                    chart.draw(view, options);
+                                    chart.draw(data, options);
 
 
                                     }
