@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="row-marketing">
-                    <h3>Brunella Lorenz</h3>
+                    <h3><?php echo $_SESSION['email'] ?></h3>
                 </div>
                 <hr>
                 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
