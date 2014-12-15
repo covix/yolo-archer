@@ -44,34 +44,46 @@
             </nav>
         </div>
         <div>
-            <form id="numericinput" class="form-horizontal" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+            <form class="form-horizontal" method="post" action="">
                 <div class=form-group>
                     <label class="col-sm-2 control-label">Edificio</label>
                     <div class="col-sm-5 col-md-8">
-                        <select name="edificio" class=" form-control">
+                        <select name="edificio" class="form-control" onchange="this.form.submit()">
+                            <option value="" selected disabled>Please select an option...</option>
                             <?php
                                 $arrrgh = get_edifici();
-                                echo $arrrgh;
                                 $s = "";
-                                foreach ($arrrgh as &$value) {
-                                    $s = $s.'<option value="$value">$value</option>';
+                                foreach ($arrrgh as &$value)
+                                {
+                                    $selected = "";
+                                    if ( $_POST['edificio'] == $value)
+                                    {
+                                        $selected = "selected";
+                                    }
+                                    $s = $s."<option value='$value' $selected>$value</option>";
                                 }
-                                echo s;
+                                echo $s;
                             ?>
                         </select>
                     </div>
                 </div>
+            </form>
+            <form id="numericinput" class="form-horizontal" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
                 <div class=form-group>
                     <label class="col-sm-2 control-label">Aula</label>
                     <div class="col-sm-5 col-md-8">
                         <select class="form-control">
                             <?php
-                                $arrrgh = get_edifici();
-                                $s = "";
-                                foreach ($arrrgh as &$value) {
-                                    $s = $s.'<option value="$value">$value</option>';
+                                if (isset ($_POST['edificio']))
+                                {
+                                    $arrrgh = get_stanze_all();
+                                    echo sizeof($arrrgh);
+                                    $s = "";
+                                    foreach ($arrrgh as &$value) {
+                                        $s = $s."<option value='$value'>$value</option>";
+                                    }
+                                    echo $s;
                                 }
-                                echo s;
                             ?>
                         </select>
                     </div>

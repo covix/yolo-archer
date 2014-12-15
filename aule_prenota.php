@@ -66,7 +66,7 @@
                             {
                                 $selected = "selected";
                             }
-                            $s = $s."<option value='$value'>$value</option>";
+                            $s = $s."<option value='$value' $selected>$value</option>";
                         }
                         echo $s;
                     ?>

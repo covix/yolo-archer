@@ -299,6 +299,32 @@ function get_edifici()
 	return $edifici;
 }
 
+function get_stanze_all()
+{
+    $servername = "fdb13.atspace.me";
+	$username = "1762595_maindb";
+	$password = "Ciao1234";
+	$dbname = "1762595_maindb";
+
+    $edificio = $_POST['edificio'];
+
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
+	$query =   "SELECT STANZA.nome FROM STANZA, EDIFICIO
+                WHERE  STANZA.id_edificio = EDIFICIO.id_edificio
+                    AND EDIFICIO.nome_corto = '$edificio'";
+	$aule = array();
+	$result = $conn->query($query);
+	if ($result->num_rows > 0)
+	{
+		while($row = $result->fetch_assoc())
+		{
+			$aule[] = $row["nome"];
+		}
+	}
+	$conn->close();
+	return $aule;
+}
 
 
 //TESTATEEEEEEEE-----------------------------------------------------------------------------
