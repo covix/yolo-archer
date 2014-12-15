@@ -6,6 +6,7 @@ if ( isset($_POST['inizio']))
 {
     $_POST['inizio'] = strtotime($_POST['inizio']);
     $_POST['fine'] = strtotime($_POST['fine']);
+
     prenota();
 }
 ?>
@@ -258,6 +259,7 @@ if ( isset($_POST['inizio']))
                 useMinutes: false,
                 useCurrent: true,
                 pickDate: true,
+                defaultDate: new Date(),
             });
 
             $('#datetimepicker2').datetimepicker({
